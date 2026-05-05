@@ -3,64 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EEN Vrijdag Vastgoed | Gebiedsontwikkeling</title>
-    <link rel="stylesheet" href="style.css"> <!-- Zorg dat je CSS bestand hier naar verwijst -->
+    <title>EEN Vrijdag Vastgoed | Makelaardij Rotterdam</title>
     <style>
-        /* Snelle toevoeging voor de 'Live' melding */
-        .launch-notice {
-            background-color: #f4f4f4;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            border-bottom: 1px solid #ddd;
-            color: #333;
+        :root { 
+            --goud: #C5A059; 
+            --donkerblauw: #1A2B42; 
+            --taupe: #7A7568; 
+            --wit: #FFFFFF; 
         }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background-color: var(--wit); 
+            color: #333; 
+        }
+        
+        /* Launch Banner */
+        .launch-banner {
+            background-color: var(--goud);
+            color: var(--donkerblauw);
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        /* Navigatiemenu */
+        .navbar { 
+            background-color: var(--taupe); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .navbar::-webkit-scrollbar { display: none; }
+        .navbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .navbar ul { 
+            list-style: none; 
+            margin: 0; 
+            padding: 20px 40px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 40px; 
+            white-space: nowrap; 
+        }
+
+        .navbar li a { 
+            color: var(--wit); 
+            text-decoration: none; 
+            font-weight: bold; 
+            font-size: 16px; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        .navbar li a:hover, .navbar li a.actief { color: var(--goud); }
+
+        /* Pagina weergave logica */
+        .pagina { display: none; min-height: 70vh; }
+        .pagina.actief { display: block; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Headers en banners */
+        .hero { background-color: var(--donkerblauw); text-align: center; padding: 60px 20px; display: flex; justify-content: center; }
+        .hero-banner-container { max-width: 900px; width: 100%; }
+        .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
+        
+        .sub-header { background-color: var(--donkerblauw); color: var(--goud); text-align: center; padding: 50px 20px; }
+        .sub-logo { max-width: 180px; height: auto; margin-bottom: 20px; }
+        .sub-header h1 { margin: 0; letter-spacing: 4px; font-size: 2.2em; text-transform: uppercase; }
+
+        /* Inhoud Layout */
+        .inhoud { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        
+        /* Home Layout */
+        .home-grid { 
+            display: flex; 
+            align-items: center; 
+            gap: 50px; 
+            text-align: left;
+            margin-top: 20px;
+        }
+        .home-tekst { flex: 1.5; }
+        .home-fotos { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+        .side-img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 4px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+
+        h2 { color: var(--donkerblauw); font-size: 2.5em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px 0 40px 0; }
+        p { line-height: 1.8; font-size: 1.15em; }
+
+        /* Algemene Sectie (vervanger voor profiel) */
+        .algemene-sectie { text-align: left; margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .navbar ul { justify-content: flex-start; padding: 20px; gap: 25px; }
+            .home-grid { flex-direction: column; text-align: center; }
+            .home-grid hr { margin: 20px auto 40px auto; }
+            .home-fotos { width: 100%; flex-direction: row; }
+            .side-img { width: 50%; }
+            .sub-logo { max-width: 140px; }
+        }
+
+        footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
+        .curated-by { font-size: 0.9em; font-style: italic; color: var(--goud); margin-top: 15px; letter-spacing: 1.5px; opacity: 0.9; }
     </style>
 </head>
 <body>
 
-    <div class="launch-notice">
-        🚀 Website live begin 2027
+    <div class="launch-banner">
+        Website live begin 2027
     </div>
 
-    <header>
-        <nav>
-            <div class="logo">EEN VRIJDAG VASTGOED</div>
-        </nav>
-    </header>
+    <nav class="navbar">
+        <ul>
+            <li><a onclick="toonPagina('home', this)" class="actief">Home</a></li>
+            <li><a onclick="toonPagina('huizen', this)">Huizen +</a></li>
+            <li><a onclick="toonPagina('diensten', this)">Diensten +</a></li>
+            <li><a onclick="toonPagina('over-ons', this)">Over ons +</a></li>
+            <li><a onclick="toonPagina('media', this)">Media</a></li>
+            <li><a onclick="toonPagina('contact', this)">Contact</a></li>
+        </ul>
+    </nav>
 
-    <main>
-        <section class="hero">
-            <h1>Project- en procesmanagement bij gebiedsontwikkeling</h1>
-            <p>Wij werken aan de toekomst van vastgoed met een frisse blik en een bewezen methodiek.</p>
-        </section>
-
-        <section class="content-split">
-            <div class="text-side">
-                <h2>Over ons team</h2>
-                <p>Bij EEN Vrijdag Vastgoed geloven we in de kracht van integrale gebiedsontwikkeling. Ons team brengt jarenlange ervaring samen vanuit diverse invalshoeken binnen de vastgoedsector en de publieke sector.</p>
-                
-                <p>Wij richten ons op het ontwarren van complexe processen, waarbij de balans tussen publieke belangen en private ambities centraal staat. Onze focus ligt op resultaat, zonder de menselijke maat uit het oog te verliezen.</p>
-                
-                <h3>Onze expertise</h3>
-                <ul>
-                    <li>Project- en procesmanagement</li>
-                    <li>Gebiedsontwikkeling & Herstructurering</li>
-                    <li>Stakeholdermanagement</li>
-                </ul>
+    <div id="hoofd-container">
+        <!-- HOME -->
+        <div id="home" class="pagina actief">
+            <header class="hero">
+                <div class="hero-banner-container">
+                    <img src="foto/Banner.jpg" alt="EEN Vrijdag Vastgoed" class="banner-img">
+                </div>
+            </header>
+            <div class="inhoud">
+                <div class="home-grid">
+                    <div class="home-tekst">
+                        <h2>Exclusiviteit op Vrijdag</h2>
+                        <hr>
+                        <p>Welkom bij EEN Vrijdag Vastgoed. Wij zijn een Rotterdamse makelaardij die gelooft in de kracht van focus. Door onze deuren uitsluitend op vrijdag te openen, bieden wij u de meest toegewijde service op de vastgoedmarkt.</p>
+                        <p>Onze methodiek is simpel: één dag, één focus, één procent courtage. Wij garanderen topkwaliteit en procesmatige perfectie voor elke klant. <strong>Onze volledige dienstverlening start begin 2027.</strong></p>
+                    </div>
+                    <div class="home-fotos">
+                        <img src="foto/kralingen.jpg" alt="Vastgoed Kralingen" class="side-img">
+                        <img src="foto/molen.jpg" alt="Rotterdamse Molen" class="side-img">
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="image-side">
-                <!-- De persoonlijke foto is verwijderd. De sfeerbeelden blijven staan. -->
-                <img src="foto/molen.jpg" alt="Gebiedsontwikkeling Molen" class="side-img">
-                <img src="foto/kralingen.jpg" alt="Vastgoed Kralingen" class="side-img">
+        <!-- HUIZEN -->
+        <div id="huizen" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>HUIZEN</h1>
+            </header>
+            <div class="inhoud">
+                <h2>Portfolio</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <p>Ons team cureert momenteel een selectie van woningen in Rotterdam en omgeving. Het actuele aanbod wordt hier begin 2027 gepresenteerd.</p>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- DIENSTEN -->
+        <div id="diensten" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>DIENSTEN</h1>
+            </header>
+            <div class="inhoud">
+                <h2>Strategie & Tarieven</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <p>Wij hanteren een vaste courtage van 1%, ongeacht de woning.</p>
+                <p>Door onze collectieve focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt ons team direct terug naar de klant.</p>
+            </div>
+        </div>
+
+        <!-- OVER ONS -->
+        <div id="over-ons" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>OVER ONS</h1>
+            </header>
+            <div class="inhoud">
+                <h2>Ons Team</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <div class="algemene-sectie">
+                    <p>Met een stevige fundering in vastgoed en gebiedsontwikkeling biedt ons team een strategische expertise die zeldzaam is in de reguliere makelaardij.</p>
+                    <p>Wij werken vanuit de visie dat kwaliteit boven kwantiteit gaat. Daarom zijn wij uitsluitend op vrijdag geopend voor 100% onverdeelde focus en topservice.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MEDIA -->
+        <div id="media" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>MEDIA</h1>
+            </header>
+            <div class="inhoud">
+                <h2>Publicaties</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <p>Binnenkort vindt u hier onze laatste vastgoedvideo's en publicaties over de Rotterdamse markt.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div id="contact" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>CONTACT</h1>
+            </header>
+            <div class="inhoud">
+                <h2>Neem Contact Op</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <p><strong>E-mail:</strong> info@eenvrijdagvastgoed.nl</p>
+                <p><strong>Locatie:</strong> Rotterdam</p>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        <p>&copy; 2026 EEN Vrijdag Vastgoed | curated by m. koopmans</p>
+        <p>&copy; 2026 EEN Vrijdag Vastgoed Rotterdam.</p>
+        <p class="curated-by">curated by Merijn Koopmans</p>
     </footer>
 
+    <script>
+        function toonPagina(paginaId, klikElement) {
+            var paginas = document.getElementsByClassName('pagina');
+            for (var i = 0; i < paginas.length; i++) { paginas[i].classList.remove('actief'); }
+            document.getElementById(paginaId).classList.add('actief');
+            var knoppen = document.querySelectorAll('.navbar a');
+            for (var i = 0; i < knoppen.length; i++) { knoppen[i].classList.remove('actief'); }
+            klikElement.classList.add('actief');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
