@@ -51,141 +51,45 @@
             color: var(--goud); 
         }
 
-        /* Pagina weergave logica (SPA) */
-        .pagina { 
-            display: none; 
-            min-height: 70vh; 
-        }
-        .pagina.actief { 
-            display: block; 
-            animation: fadeIn 0.4s ease-in-out; 
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
+        /* Pagina weergave logica */
+        .pagina { display: none; min-height: 70vh; }
+        .pagina.actief { display: block; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Headers en banners */
-        .hero { 
-            background-color: var(--donkerblauw); 
-            text-align: center; 
-            padding: 60px 20px; 
-            display: flex; 
-            justify-content: center; 
-        }
-        .hero-banner-container { 
-            max-width: 900px; 
-            width: 100%; 
-        }
-        .banner-img { 
-            width: 100%; 
-            height: auto; 
-            display: block; 
-            margin: 0 auto; 
-        }
+        .hero { background-color: var(--donkerblauw); text-align: center; padding: 60px 20px; display: flex; justify-content: center; }
+        .hero-banner-container { max-width: 900px; width: 100%; }
+        .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
         
-        .sub-header { 
-            background-color: var(--donkerblauw); 
-            color: var(--goud); 
-            text-align: center; 
-            padding: 50px 20px; 
-        }
-        .sub-logo { 
-            max-width: 80px; 
-            height: auto; 
-            margin-bottom: 15px; 
-        }
-        .sub-header h1 { 
-            margin: 0; 
-            letter-spacing: 4px; 
-            font-size: 2.2em; 
-            text-transform: uppercase; 
-        }
+        .sub-header { background-color: var(--donkerblauw); color: var(--goud); text-align: center; padding: 50px 20px; }
+        .sub-logo { max-width: 80px; height: auto; margin-bottom: 15px; }
+        .sub-header h1 { margin: 0; letter-spacing: 4px; font-size: 2.2em; text-transform: uppercase; }
 
         /* Inhoud */
-        .inhoud { 
-            padding: 80px 20px; 
-            text-align: center; 
-            max-width: 800px; 
-            margin: 0 auto; 
-        }
-        h2 { 
-            color: var(--donkerblauw); 
-            font-size: 2.5em; 
-            margin-bottom: 10px; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-        }
-        hr { 
-            border: 0; 
-            height: 2px; 
-            background: var(--goud); 
-            width: 80px; 
-            margin: 20px auto 40px auto; 
-        }
-        p { 
-            line-height: 1.8; 
-            font-size: 1.15em; 
-        }
+        .inhoud { padding: 80px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+        h2 { color: var(--donkerblauw); font-size: 2.5em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px auto 40px auto; }
+        p { line-height: 1.8; font-size: 1.15em; }
 
-        /* Profiel Sectie (Voor de foto naast de tekst) */
-        .profiel-sectie {
-            display: flex;
-            align-items: flex-start;
-            gap: 40px;
-            margin-top: 40px;
-            text-align: left;
-        }
-        .profiel-foto {
-            width: 40%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .profiel-tekst {
-            width: 60%;
-        }
-        .profiel-tekst p:first-child {
-            margin-top: 0;
-        }
+        /* Profiel Sectie */
+        .profiel-sectie { display: flex; align-items: flex-start; gap: 40px; margin-top: 40px; text-align: left; }
+        .profiel-foto { width: 40%; max-width: 300px; height: auto; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .profiel-tekst { width: 60%; }
 
-        /* Mobiele weergave voor de foto */
         @media (max-width: 768px) {
-            .profiel-sectie {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .profiel-foto {
-                width: 80%;
-                margin-bottom: 20px;
-            }
-            .profiel-tekst {
-                width: 100%;
-            }
+            .profiel-sectie { flex-direction: column; align-items: center; text-align: center; }
+            .profiel-foto { width: 80%; margin-bottom: 20px; }
+            .profiel-tekst { width: 100%; }
+            .navbar ul { gap: 15px; }
+            .navbar li a { font-size: 14px; }
         }
 
-        /* Footer */
-        footer { 
-            background-color: var(--donkerblauw); 
-            color: var(--wit); 
-            text-align: center; 
-            padding: 50px 0; 
-        }
-        .curated-by { 
-            font-size: 0.9em; 
-            font-style: italic; 
-            color: var(--goud); 
-            margin-top: 15px; 
-            letter-spacing: 1.5px; 
-            opacity: 0.9; 
-        }
+        footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
+        .curated-by { font-size: 0.9em; font-style: italic; color: var(--goud); margin-top: 15px; letter-spacing: 1.5px; opacity: 0.9; }
     </style>
 </head>
 <body>
 
-    <!-- Navigatiemenu (Diensten en Over ons omgedraaid) -->
     <nav class="navbar">
         <ul>
             <li><a onclick="toonPagina('home', this)" class="actief">Home</a></li>
@@ -197,14 +101,12 @@
         </ul>
     </nav>
 
-    <!-- CONTAINER VOOR ALLE PAGINA'S -->
     <div id="hoofd-container">
-
-        <!-- PAGINA 1: HOME -->
+        <!-- HOME -->
         <div id="home" class="pagina actief">
             <header class="hero">
                 <div class="hero-banner-container">
-                    <img src="foto/banner.jpg" alt="EEN Vrijdag Vastgoed" class="banner-img">
+                    <img src="Banner.jpg" alt="EEN Vrijdag Vastgoed" class="banner-img">
                 </div>
             </header>
             <div class="inhoud">
@@ -214,10 +116,10 @@
             </div>
         </div>
 
-        <!-- PAGINA 2: HUIZEN -->
+        <!-- HUIZEN -->
         <div id="huizen" class="pagina">
             <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <img src="logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>HUIZEN</h1>
             </header>
             <div class="inhoud">
@@ -227,105 +129,80 @@
             </div>
         </div>
 
-        <!-- PAGINA 3: DIENSTEN -->
+        <!-- DIENSTEN -->
         <div id="diensten" class="pagina">
             <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <img src="logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>DIENSTEN</h1>
             </header>
             <div class="inhoud">
-                <h2>Onze Expertise</h2>
-                <hr>
-                <p>Van strategische verkoop tot aankoopbegeleiding en taxaties. Wij bieden een full-service ervaring op de meest efficiënte dag van de week.</p>
-                
-                <br><br>
-                
                 <h2>Strategie & Tarieven</h2>
                 <hr>
-                <p>Bij EEN Vrijdag Vastgoed geloven we niet in ondoorzichtige tariefstructuren, verborgen opstartkosten of verrassingen achteraf. Vanuit een sterke achtergrond in project- en procesmanagement weten wij dat een succesvolle samenwerking begint bij absolute financiële duidelijkheid en een strak afgekaderd doel. Daarom hanteren wij een even simpele als ijzersterke strategie: <strong>een vaste courtage van 1%, ongeacht de woning.</strong></p>
-                <p>Hoe wij deze premium dienstverlening voor dit competitieve tarief kunnen aanbieden? Het antwoord ligt in onze werkwijze. Doordat wij al onze vastgoedactiviteiten, bezichtigingen en onderhandelingen exclusief en uiterst efficiënt concentreren op de vrijdag, elimineren wij de overbodige overheadkosten van een traditioneel makelaarskantoor dat zeven dagen per week open is.</p>
-                <p>Wij werken met een messcherpe focus en een gestroomlijnd proces. Geen verspilde tijd, geen loze uren, maar pure effectiviteit. Dat strakke procesmanagement vertaalt zich direct terug naar uw portemonnee. U betaalt bij ons puur voor strategische expertise, hoogwaardige begeleiding en keihard resultaat. Transparant, efficiënt en doelgericht.</p>
+                <p>Bij EEN Vrijdag Vastgoed hanteren wij een simpele en ijzersterke strategie: <strong>een vaste courtage van 1%, ongeacht de woning.</strong></p>
+                <p>Door onze vastgoedactiviteiten en onderhandelingen uitsluitend op vrijdag te concentreren, elimineren wij overbodige overheadkosten. Dit strakke procesmanagement vertaalt zich direct terug naar uw portemonnee.</p>
             </div>
         </div>
 
-        <!-- PAGINA 4: OVER ONS -->
+        <!-- OVER ONS -->
         <div id="over-ons" class="pagina">
             <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <img src="logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>OVER ONS</h1>
             </header>
             <div class="inhoud">
                 <h2>Merijn Koopmans</h2>
                 <hr>
                 <div class="profiel-sectie">
-                    <img src="foto/Merijn.jpg" alt="Merijn Koopmans - Makelaar" class="profiel-foto">
-                    
+                    <img src="Merijn.jpg" alt="Merijn Koopmans" class="profiel-foto">
                     <div class="profiel-tekst">
-                        <p>Ontmoet Merijn Koopmans, de oprichter en makelaar achter EEN Vrijdag Vastgoed. Met een stevige fundering in vastgoed en gebiedsontwikkeling brengt Merijn een diepgaande, strategische expertise mee die zeldzaam is in de reguliere makelaardij.</p>
-                        <p>Waar traditionele makelaars zich puur richten op de snelle transactie, kijkt Merijn met de analytische blik van een ontwikkelaar naar uw woning. Hij kent de marktmechanismen, overziet bestemmingsplannen en begrijpt de complexe dynamiek van de Rotterdamse vastgoedmarkt als geen ander. Zijn doordeweekse toewijding aan grootschalige, complexe vastgoedprojecten is dan ook precies de reden achter het unieke concept van deze makelaardij.</p>
-                        <p>Door zijn deuren voor particuliere cliënten uitsluitend op vrijdag te openen, creëert Merijn de ruimte om 100% onverdeelde focus, strak procesmanagement en absolute topservice te leveren. Geen afleidingen, geen loze beloftes, maar ijzersterk en eerlijk advies, gebouwd op tastbare ervaring.</p>
-                        <p>Met Merijn haalt u niet zomaar een makelaar in huis, maar een strategische vastgoedpartner die uw belangen met chirurgische precisie behartigt.</p>
+                        <p>Ontmoet Merijn Koopmans, de oprichter achter EEN Vrijdag Vastgoed. Met een stevige fundering in vastgoed en gebiedsontwikkeling brengt Merijn een strategische expertise mee die zeldzaam is in de reguliere makelaardij.</p>
+                        <p>Door zijn deuren uitsluitend op vrijdag te openen, creëert hij de ruimte voor 100% onverdeelde focus en absolute topservice.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PAGINA 5: MEDIA -->
+        <!-- MEDIA -->
         <div id="media" class="pagina">
             <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <img src="logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>MEDIA</h1>
             </header>
             <div class="inhoud">
-                <h2>Publicaties & Tours</h2>
+                <h2>Publicaties</h2>
                 <hr>
-                <p>Bekijk hier onze laatste vastgoedvideo's, virtuele tours en publicaties over de Rotterdamse vastgoedmarkt.</p>
+                <p>Bekijk hier onze laatste vastgoedvideo's en publicaties over de Rotterdamse vastgoedmarkt.</p>
             </div>
         </div>
 
-        <!-- PAGINA 6: CONTACT -->
+        <!-- CONTACT -->
         <div id="contact" class="pagina">
             <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <img src="logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>CONTACT</h1>
             </header>
             <div class="inhoud">
                 <h2>Neem Contact Op</h2>
                 <hr>
-                <p>Wilt u een afspraak inplannen voor aanstaande vrijdag? Wij staan klaar om u te begeleiden met 100% focus.</p>
                 <p><strong>E-mail:</strong> info@eenvrijdagvastgoed.nl</p>
                 <p><strong>Locatie:</strong> Rotterdam</p>
             </div>
         </div>
-
-    </div> 
-    <!-- EINDE CONTAINER PAGINA'S -->
+    </div>
 
     <footer>
-        <p>&copy; 2026 EEN Vrijdag Vastgoed Rotterdam. Alle rechten voorbehouden.</p>
+        <p>&copy; 2026 EEN Vrijdag Vastgoed Rotterdam.</p>
         <p class="curated-by">Curated by M. Koopmans</p>
     </footer>
 
-    <!-- JavaScript voor het wisselen van de pagina's -->
     <script>
         function toonPagina(paginaId, klikElement) {
-            // Verberg alle pagina's
             var paginas = document.getElementsByClassName('pagina');
-            for (var i = 0; i < paginas.length; i++) {
-                paginas[i].classList.remove('actief');
-            }
-            
-            // Toon de geselecteerde pagina
+            for (var i = 0; i < paginas.length; i++) { paginas[i].classList.remove('actief'); }
             document.getElementById(paginaId).classList.add('actief');
-
-            // Update de actieve status in het menu
             var knoppen = document.querySelectorAll('.navbar a');
-            for (var i = 0; i < knoppen.length; i++) {
-                knoppen[i].classList.remove('actief');
-            }
+            for (var i = 0; i < knoppen.length; i++) { knoppen[i].classList.remove('actief'); }
             klikElement.classList.add('actief');
-            
-            // Scroll soepel naar boven
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
