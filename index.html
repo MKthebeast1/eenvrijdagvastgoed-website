@@ -19,7 +19,7 @@
             color: #333; 
         }
         
-        /* Navigatiemenu met Swipe-functie voor Mobiel */
+        /* Navigatiemenu met Swipe-functie */
         .navbar { 
             background-color: var(--taupe); 
             position: sticky; 
@@ -66,32 +66,54 @@
         .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
         
         .sub-header { background-color: var(--donkerblauw); color: var(--goud); text-align: center; padding: 50px 20px; }
-        
-        /* Aangepast: Logo op sub-pagina's is nu groter */
         .sub-logo { max-width: 180px; height: auto; margin-bottom: 20px; }
-        
         .sub-header h1 { margin: 0; letter-spacing: 4px; font-size: 2.2em; text-transform: uppercase; }
 
-        /* Inhoud */
-        .inhoud { padding: 80px 20px; text-align: center; max-width: 800px; margin: 0 auto; }
+        /* Inhoud Layout */
+        .inhoud { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
+        
+        /* Nieuwe Home Layout voor tekst + fotos */
+        .home-grid { 
+            display: flex; 
+            align-items: center; 
+            gap: 50px; 
+            text-align: left;
+            margin-top: 20px;
+        }
+        .home-tekst { flex: 1.5; }
+        .home-fotos { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 20px; 
+        }
+        .side-img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 4px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+        }
+
         h2 { color: var(--donkerblauw); font-size: 2.5em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px auto 40px auto; }
+        hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px 0 40px 0; }
+        .home-grid hr { margin: 20px 0 40px 0; } /* Goud lijntje links uitlijnen in de grid */
         p { line-height: 1.8; font-size: 1.15em; }
 
         .profiel-sectie { display: flex; align-items: flex-start; gap: 40px; margin-top: 40px; text-align: left; }
         .profiel-foto { width: 40%; max-width: 300px; height: auto; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .profiel-tekst { width: 60%; }
 
+        /* Mobiele aanpassingen */
         @media (max-width: 768px) {
-            .navbar ul { 
-                justify-content: flex-start; 
-                padding: 20px;
-                gap: 25px;
-            }
+            .navbar ul { justify-content: flex-start; padding: 20px; gap: 25px; }
+            .home-grid { flex-direction: column; text-align: center; }
+            .home-grid hr { margin: 20px auto 40px auto; }
+            .home-fotos { width: 100%; flex-direction: row; }
+            .side-img { width: 50%; }
             .profiel-sectie { flex-direction: column; align-items: center; text-align: center; }
             .profiel-foto { width: 80%; margin-bottom: 20px; }
             .profiel-tekst { width: 100%; }
-            .sub-logo { max-width: 140px; } /* Iets kleiner op mobiel voor balans */
+            .sub-logo { max-width: 140px; }
         }
 
         footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
@@ -120,9 +142,18 @@
                 </div>
             </header>
             <div class="inhoud">
-                <h2>Exclusiviteit op Vrijdag</h2>
-                <hr>
-                <p>Welkom bij EEN Vrijdag Vastgoed. Wij zijn een Rotterdamse makelaardij die gelooft in de kracht van focus. Door onze deuren uitsluitend op vrijdag te openen, bieden wij u de meest toegewijde service op de vastgoedmarkt.</p>
+                <div class="home-grid">
+                    <div class="home-tekst">
+                        <h2>Exclusiviteit op Vrijdag</h2>
+                        <hr>
+                        <p>Welkom bij EEN Vrijdag Vastgoed. Wij zijn een Rotterdamse makelaardij die gelooft in de kracht van focus. Door onze deuren uitsluitend op vrijdag te openen, bieden wij u de meest toegewijde service op de vastgoedmarkt.</p>
+                        <p>Onze methodiek is simpel: één dag, één focus, één procent courtage. Zo garanderen wij topkwaliteit en procesmatige perfectie voor elke klant.</p>
+                    </div>
+                    <div class="home-fotos">
+                        <img src="foto/kralingen.jpg" alt="Vastgoed Kralingen" class="side-img">
+                        <img src="foto/molen.jpg" alt="Rotterdamse Molen" class="side-img">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -134,7 +165,7 @@
             </header>
             <div class="inhoud">
                 <h2>Ons Portfolio</h2>
-                <hr>
+                <hr style="margin: 20px auto 40px auto;">
                 <p>Ons actuele aanbod van woningen in Rotterdam en omgeving. Zorgvuldig geselecteerd voor de veeleisende koper.</p>
             </div>
         </div>
@@ -147,7 +178,7 @@
             </header>
             <div class="inhoud">
                 <h2>Strategie & Tarieven</h2>
-                <hr>
+                <hr style="margin: 20px auto 40px auto;">
                 <p>Bij EEN Vrijdag Vastgoed hanteren wij een vaste courtage van 1%, ongeacht de woning.</p>
                 <p>Door onze focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt zich direct terug naar uw portemonnee.</p>
             </div>
@@ -161,7 +192,7 @@
             </header>
             <div class="inhoud">
                 <h2>Merijn Koopmans</h2>
-                <hr>
+                <hr style="margin: 20px auto 40px auto;">
                 <div class="profiel-sectie">
                     <img src="foto/Merijn.jpg" alt="Merijn Koopmans" class="profiel-foto">
                     <div class="profiel-tekst">
@@ -180,7 +211,7 @@
             </header>
             <div class="inhoud">
                 <h2>Publicaties</h2>
-                <hr>
+                <hr style="margin: 20px auto 40px auto;">
                 <p>Bekijk hier onze laatste vastgoedvideo's en publicaties.</p>
             </div>
         </div>
@@ -193,7 +224,7 @@
             </header>
             <div class="inhoud">
                 <h2>Neem Contact Op</h2>
-                <hr>
+                <hr style="margin: 20px auto 40px auto;">
                 <p><strong>E-mail:</strong> info@eenvrijdagvastgoed.nl</p>
                 <p><strong>Locatie:</strong> Rotterdam</p>
             </div>
