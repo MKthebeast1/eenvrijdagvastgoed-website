@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EEN Vrijdag Vastgoed | Makelaardij Rotterdam</title>
+    
+    <!-- Favicon voor Google Zoekresultaten -->
+    <link rel="icon" type="image/jpeg" href="foto/logo.jpg">
+
     <style>
         :root { 
             --goud: #C5A059; 
@@ -31,7 +35,7 @@
             font-size: 14px;
         }
 
-        /* Navigatiemenu - Nu flexibel binnen de pagina's */
+        /* Navigatiemenu */
         .navbar { 
             background-color: var(--taupe); 
             z-index: 1000; 
@@ -75,7 +79,7 @@
         .hero-banner-container { max-width: 900px; width: 100%; }
         .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
         
-        /* Logo naast tekst (zoals in image_f4c480.png) */
+        /* Sub-header: Logo naast de naam */
         .sub-header { 
             background-color: var(--donkerblauw); 
             color: var(--goud); 
@@ -145,8 +149,6 @@
         Live begin 2027
     </div>
 
-    <!-- We hergebruiken de navigatie in de JS, dus we definiëren de links hieronder per pagina -->
-
     <div id="hoofd-container">
         <!-- HOME -->
         <div id="home" class="pagina actief">
@@ -156,7 +158,6 @@
                 </div>
             </header>
             
-            <!-- Menu onder de banner op Home -->
             <nav class="navbar">
                 <ul>
                     <li><a onclick="toonPagina('home')" class="actief">Home</a></li>
@@ -184,34 +185,6 @@
             </div>
         </div>
 
-        <!-- DIENSTEN (Voorbeeld voor andere pagina's) -->
-        <div id="diensten" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>DIENSTEN</h1>
-            </header>
-
-            <!-- Menu onder het logo op subpagina's -->
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')" class="actief">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')">Media</a></li>
-                    <li><a onclick="toonPagina('contact')">Contact</a></li>
-                </ul>
-            </nav>
-
-            <div class="inhoud">
-                <h2>Strategie & Tarieven</h2>
-                <hr style="margin: 20px auto 40px auto;">
-                <p>Wij hanteren een vaste courtage van 1%, ongeacht de woning.</p>
-                <p>Door onze collectieve focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt ons team direct terug naar de klant.</p>
-            </div>
-        </div>
-
-        <!-- Overige pagina's volgen hetzelfde patroon (Header -> Nav -> Inhoud) -->
         <!-- HUIZEN -->
         <div id="huizen" class="pagina">
             <header class="sub-header">
@@ -232,6 +205,30 @@
                 <h2>Portfolio</h2>
                 <hr style="margin: 20px auto 40px auto;">
                 <p>Het actuele aanbod wordt hier begin 2027 gepresenteerd.</p>
+            </div>
+        </div>
+
+        <!-- DIENSTEN -->
+        <div id="diensten" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>DIENSTEN</h1>
+            </header>
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')" class="actief">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')">Media</a></li>
+                    <li><a onclick="toonPagina('contact')">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="inhoud">
+                <h2>Strategie & Tarieven</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <p>Wij hanteren een vaste courtage van 1%, ongeacht de woning.</p>
+                <p>Door onze collectieve focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt ons team direct terug naar de klant.</p>
             </div>
         </div>
 
@@ -313,15 +310,11 @@
 
     <script>
         function toonPagina(paginaId) {
-            // Verberg alle pagina's
             var paginas = document.getElementsByClassName('pagina');
             for (var i = 0; i < paginas.length; i++) { 
                 paginas[i].classList.remove('actief'); 
             }
-            // Toon de gekozen pagina
             document.getElementById(paginaId).classList.add('actief');
-            
-            // Scroll naar boven
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
