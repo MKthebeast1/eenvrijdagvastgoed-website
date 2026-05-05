@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EEN Vrijdag Vastgoed | Makelaardij Rotterdam</title>
     <style>
-        /* Kleuren en basis */
         :root { 
             --goud: #C5A059; 
             --donkerblauw: #1A2B42; 
@@ -20,24 +19,32 @@
             color: #333; 
         }
         
-        /* Navigatiemenu */
+        /* Navigatiemenu met Swipe-functie voor Mobiel */
         .navbar { 
             background-color: var(--taupe); 
-            display: flex; 
-            justify-content: center; 
-            padding: 20px 0; 
             position: sticky; 
             top: 0; 
             z-index: 1000; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            overflow-x: auto; /* Zorgt voor het kunnen schuiven */
+            -webkit-overflow-scrolling: touch;
         }
+        
+        /* Verbergt de scrollbar voor een strakke look */
+        .navbar::-webkit-scrollbar { display: none; }
+        .navbar { -ms-overflow-style: none; scrollbar-width: none; }
+
         .navbar ul { 
             list-style: none; 
             margin: 0; 
-            padding: 0; 
+            padding: 20px 40px; 
             display: flex; 
+            justify-content: center; 
             gap: 40px; 
+            white-space: nowrap; /* Voorkomt dat knoppen naar de volgende regel springen */
         }
+
         .navbar li a { 
             color: var(--wit); 
             text-decoration: none; 
@@ -47,9 +54,7 @@
             cursor: pointer; 
             transition: 0.3s; 
         }
-        .navbar li a:hover, .navbar li a.actief { 
-            color: var(--goud); 
-        }
+        .navbar li a:hover, .navbar li a.actief { color: var(--goud); }
 
         /* Pagina weergave logica */
         .pagina { display: none; min-height: 70vh; }
@@ -76,12 +81,16 @@
         .profiel-foto { width: 40%; max-width: 300px; height: auto; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .profiel-tekst { width: 60%; }
 
+        /* Mobiele aanpassingen */
         @media (max-width: 768px) {
+            .navbar ul { 
+                justify-content: flex-start; /* Start links zodat je naar rechts kunt swipen */
+                padding: 20px;
+                gap: 25px;
+            }
             .profiel-sectie { flex-direction: column; align-items: center; text-align: center; }
             .profiel-foto { width: 80%; margin-bottom: 20px; }
             .profiel-tekst { width: 100%; }
-            .navbar ul { gap: 15px; }
-            .navbar li a { font-size: 14px; }
         }
 
         footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
@@ -138,8 +147,8 @@
             <div class="inhoud">
                 <h2>Strategie & Tarieven</h2>
                 <hr>
-                <p>Bij EEN Vrijdag Vastgoed hanteren wij een simpele en ijzersterke strategie: <strong>een vaste courtage van 1%, ongeacht de woning.</strong></p>
-                <p>Door onze vastgoedactiviteiten en onderhandelingen uitsluitend op vrijdag te concentreren, elimineren wij overbodige overheadkosten. Dit strakke procesmanagement vertaalt zich direct terug naar uw portemonnee.</p>
+                <p>Bij EEN Vrijdag Vastgoed hanteren wij een vaste courtage van 1%, ongeacht de woning.</p>
+                <p>Door onze focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt zich direct terug naar uw portemonnee.</p>
             </div>
         </div>
 
@@ -155,8 +164,8 @@
                 <div class="profiel-sectie">
                     <img src="Merijn.jpg" alt="Merijn Koopmans" class="profiel-foto">
                     <div class="profiel-tekst">
-                        <p>Ontmoet Merijn Koopmans, de oprichter achter EEN Vrijdag Vastgoed. Met een stevige fundering in vastgoed en gebiedsontwikkeling brengt Merijn een strategische expertise mee die zeldzaam is in de reguliere makelaardij.</p>
-                        <p>Door zijn deuren uitsluitend op vrijdag te openen, creëert hij de ruimte voor 100% onverdeelde focus en absolute topservice.</p>
+                        <p>Met een stevige fundering in vastgoed en gebiedsontwikkeling biedt Merijn een strategische expertise die zeldzaam is in de reguliere makelaardij.</p>
+                        <p>Uitsluitend op vrijdag geopend voor 100% onverdeelde focus en topservice.</p>
                     </div>
                 </div>
             </div>
@@ -171,7 +180,7 @@
             <div class="inhoud">
                 <h2>Publicaties</h2>
                 <hr>
-                <p>Bekijk hier onze laatste vastgoedvideo's en publicaties over de Rotterdamse vastgoedmarkt.</p>
+                <p>Bekijk hier onze laatste vastgoedvideo's en publicaties.</p>
             </div>
         </div>
 
