@@ -31,7 +31,6 @@
             -webkit-overflow-scrolling: touch;
         }
         
-        /* Verbergt de scrollbar voor een strakke look */
         .navbar::-webkit-scrollbar { display: none; }
         .navbar { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -67,7 +66,10 @@
         .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
         
         .sub-header { background-color: var(--donkerblauw); color: var(--goud); text-align: center; padding: 50px 20px; }
-        .sub-logo { max-width: 80px; height: auto; margin-bottom: 15px; }
+        
+        /* Aangepast: Logo op sub-pagina's is nu groter */
+        .sub-logo { max-width: 180px; height: auto; margin-bottom: 20px; }
+        
         .sub-header h1 { margin: 0; letter-spacing: 4px; font-size: 2.2em; text-transform: uppercase; }
 
         /* Inhoud */
@@ -76,12 +78,10 @@
         hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px auto 40px auto; }
         p { line-height: 1.8; font-size: 1.15em; }
 
-        /* Profiel Sectie */
         .profiel-sectie { display: flex; align-items: flex-start; gap: 40px; margin-top: 40px; text-align: left; }
         .profiel-foto { width: 40%; max-width: 300px; height: auto; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .profiel-tekst { width: 60%; }
 
-        /* Mobiele aanpassingen */
         @media (max-width: 768px) {
             .navbar ul { 
                 justify-content: flex-start; 
@@ -91,6 +91,7 @@
             .profiel-sectie { flex-direction: column; align-items: center; text-align: center; }
             .profiel-foto { width: 80%; margin-bottom: 20px; }
             .profiel-tekst { width: 100%; }
+            .sub-logo { max-width: 140px; } /* Iets kleiner op mobiel voor balans */
         }
 
         footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
