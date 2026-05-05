@@ -31,11 +31,9 @@
             font-size: 14px;
         }
 
-        /* Navigatiemenu */
+        /* Navigatiemenu - Nu flexibel binnen de pagina's */
         .navbar { 
             background-color: var(--taupe); 
-            position: sticky; 
-            top: 0; 
             z-index: 1000; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             width: 100%;
@@ -77,9 +75,26 @@
         .hero-banner-container { max-width: 900px; width: 100%; }
         .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
         
-        .sub-header { background-color: var(--donkerblauw); color: var(--goud); text-align: center; padding: 50px 20px; }
-        .sub-logo { max-width: 180px; height: auto; margin-bottom: 20px; }
-        .sub-header h1 { margin: 0; letter-spacing: 4px; font-size: 2.2em; text-transform: uppercase; }
+        /* Logo naast tekst (zoals in image_f4c480.png) */
+        .sub-header { 
+            background-color: var(--donkerblauw); 
+            color: var(--goud); 
+            padding: 50px 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 40px; 
+        }
+        .sub-logo { 
+            max-width: 250px; 
+            height: auto; 
+        }
+        .sub-header h1 { 
+            margin: 0; 
+            letter-spacing: 4px; 
+            font-size: 2.5em; 
+            text-transform: uppercase; 
+        }
 
         /* Inhoud Layout */
         .inhoud { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
@@ -110,16 +125,14 @@
         hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px 0 40px 0; }
         p { line-height: 1.8; font-size: 1.15em; }
 
-        /* Algemene Sectie (vervanger voor profiel) */
-        .algemene-sectie { text-align: left; margin-top: 40px; }
-
         @media (max-width: 768px) {
             .navbar ul { justify-content: flex-start; padding: 20px; gap: 25px; }
+            .sub-header { flex-direction: column; gap: 15px; }
+            .sub-logo { max-width: 200px; }
             .home-grid { flex-direction: column; text-align: center; }
             .home-grid hr { margin: 20px auto 40px auto; }
             .home-fotos { width: 100%; flex-direction: row; }
             .side-img { width: 50%; }
-            .sub-logo { max-width: 140px; }
         }
 
         footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
@@ -129,19 +142,10 @@
 <body>
 
     <div class="launch-banner">
-        Website live begin 2027
+        Live begin 2027
     </div>
 
-    <nav class="navbar">
-        <ul>
-            <li><a onclick="toonPagina('home', this)" class="actief">Home</a></li>
-            <li><a onclick="toonPagina('huizen', this)">Huizen +</a></li>
-            <li><a onclick="toonPagina('diensten', this)">Diensten +</a></li>
-            <li><a onclick="toonPagina('over-ons', this)">Over ons +</a></li>
-            <li><a onclick="toonPagina('media', this)">Media</a></li>
-            <li><a onclick="toonPagina('contact', this)">Contact</a></li>
-        </ul>
-    </nav>
+    <!-- We hergebruiken de navigatie in de JS, dus we definiëren de links hieronder per pagina -->
 
     <div id="hoofd-container">
         <!-- HOME -->
@@ -151,6 +155,19 @@
                     <img src="foto/Banner.jpg" alt="EEN Vrijdag Vastgoed" class="banner-img">
                 </div>
             </header>
+            
+            <!-- Menu onder de banner op Home -->
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')" class="actief">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')">Media</a></li>
+                    <li><a onclick="toonPagina('contact')">Contact</a></li>
+                </ul>
+            </nav>
+
             <div class="inhoud">
                 <div class="home-grid">
                     <div class="home-tekst">
@@ -167,30 +184,54 @@
             </div>
         </div>
 
+        <!-- DIENSTEN (Voorbeeld voor andere pagina's) -->
+        <div id="diensten" class="pagina">
+            <header class="sub-header">
+                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
+                <h1>DIENSTEN</h1>
+            </header>
+
+            <!-- Menu onder het logo op subpagina's -->
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')" class="actief">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')">Media</a></li>
+                    <li><a onclick="toonPagina('contact')">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="inhoud">
+                <h2>Strategie & Tarieven</h2>
+                <hr style="margin: 20px auto 40px auto;">
+                <p>Wij hanteren een vaste courtage van 1%, ongeacht de woning.</p>
+                <p>Door onze collectieve focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt ons team direct terug naar de klant.</p>
+            </div>
+        </div>
+
+        <!-- Overige pagina's volgen hetzelfde patroon (Header -> Nav -> Inhoud) -->
         <!-- HUIZEN -->
         <div id="huizen" class="pagina">
             <header class="sub-header">
                 <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>HUIZEN</h1>
             </header>
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')" class="actief">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')">Media</a></li>
+                    <li><a onclick="toonPagina('contact')">Contact</a></li>
+                </ul>
+            </nav>
             <div class="inhoud">
                 <h2>Portfolio</h2>
                 <hr style="margin: 20px auto 40px auto;">
-                <p>Ons team cureert momenteel een selectie van woningen in Rotterdam en omgeving. Het actuele aanbod wordt hier begin 2027 gepresenteerd.</p>
-            </div>
-        </div>
-
-        <!-- DIENSTEN -->
-        <div id="diensten" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>DIENSTEN</h1>
-            </header>
-            <div class="inhoud">
-                <h2>Strategie & Tarieven</h2>
-                <hr style="margin: 20px auto 40px auto;">
-                <p>Wij hanteren een vaste courtage van 1%, ongeacht de woning.</p>
-                <p>Door onze collectieve focus op de vrijdag elimineren wij overheadkosten. Dat strakke procesmanagement vertaalt ons team direct terug naar de klant.</p>
+                <p>Het actuele aanbod wordt hier begin 2027 gepresenteerd.</p>
             </div>
         </div>
 
@@ -200,13 +241,20 @@
                 <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>OVER ONS</h1>
             </header>
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')" class="actief">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')">Media</a></li>
+                    <li><a onclick="toonPagina('contact')">Contact</a></li>
+                </ul>
+            </nav>
             <div class="inhoud">
                 <h2>Ons Team</h2>
                 <hr style="margin: 20px auto 40px auto;">
-                <div class="algemene-sectie">
-                    <p>Met een stevige fundering in vastgoed en gebiedsontwikkeling biedt ons team een strategische expertise die zeldzaam is in de reguliere makelaardij.</p>
-                    <p>Wij werken vanuit de visie dat kwaliteit boven kwantiteit gaat. Daarom zijn wij uitsluitend op vrijdag geopend voor 100% onverdeelde focus en topservice.</p>
-                </div>
+                <p>Met een stevige fundering in vastgoed en gebiedsontwikkeling biedt ons team een strategische expertise die zeldzaam is in de reguliere makelaardij.</p>
             </div>
         </div>
 
@@ -216,10 +264,20 @@
                 <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>MEDIA</h1>
             </header>
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')" class="actief">Media</a></li>
+                    <li><a onclick="toonPagina('contact')">Contact</a></li>
+                </ul>
+            </nav>
             <div class="inhoud">
                 <h2>Publicaties</h2>
                 <hr style="margin: 20px auto 40px auto;">
-                <p>Binnenkort vindt u hier onze laatste vastgoedvideo's en publicaties over de Rotterdamse markt.</p>
+                <p>Binnenkort vindt u hier onze laatste vastgoedvideo's.</p>
             </div>
         </div>
 
@@ -229,6 +287,16 @@
                 <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
                 <h1>CONTACT</h1>
             </header>
+            <nav class="navbar">
+                <ul>
+                    <li><a onclick="toonPagina('home')">Home</a></li>
+                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
+                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
+                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
+                    <li><a onclick="toonPagina('media')">Media</a></li>
+                    <li><a onclick="toonPagina('contact')" class="actief">Contact</a></li>
+                </ul>
+            </nav>
             <div class="inhoud">
                 <h2>Neem Contact Op</h2>
                 <hr style="margin: 20px auto 40px auto;">
@@ -240,17 +308,20 @@
 
     <footer>
         <p>&copy; 2026 EEN Vrijdag Vastgoed Rotterdam.</p>
-        <p class="curated-by">curated by Merijn Koopmans</p>
+        <p class="curated-by">Curated by Merijn Koopmans</p>
     </footer>
 
     <script>
-        function toonPagina(paginaId, klikElement) {
+        function toonPagina(paginaId) {
+            // Verberg alle pagina's
             var paginas = document.getElementsByClassName('pagina');
-            for (var i = 0; i < paginas.length; i++) { paginas[i].classList.remove('actief'); }
+            for (var i = 0; i < paginas.length; i++) { 
+                paginas[i].classList.remove('actief'); 
+            }
+            // Toon de gekozen pagina
             document.getElementById(paginaId).classList.add('actief');
-            var knoppen = document.querySelectorAll('.navbar a');
-            for (var i = 0; i < knoppen.length; i++) { knoppen[i].classList.remove('actief'); }
-            klikElement.classList.add('actief');
+            
+            // Scroll naar boven
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
