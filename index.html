@@ -10,6 +10,11 @@
     <link rel="icon" type="image/jpeg" href="foto/logo.jpg">
 
     <style>
+        /* Voorkomt ghost-width en forceert strakke uitlijning (Fix voor de rechterkant) */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         :root { 
             --donkerblauw: #1A2B42; 
             --goud: #C5A059; 
@@ -23,6 +28,8 @@
             background-color: var(--wit); 
             color: var(--donkerblauw); 
             scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden; /* Blokkeert horizontaal scrollen/witte balken */
         }
 
         /* Launch Bar */
@@ -212,20 +219,20 @@
         .spec-icon { width: 20px; height: 20px; stroke: var(--goud); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         /* Blauwe Slinger Slideshow */
-        .slider-section { background: var(--donkerblauw); padding: 40px 0; overflow: hidden; }
+        .slider-section { background: var(--donkerblauw); padding: 40px 0; overflow: hidden; width: 100%; }
         .slide-track { display: flex; width: calc(400px * 12); animation: scroll 50s linear infinite; }
         .slide { width: 400px; padding: 0 15px; }
         .slide img { width: 100%; height: 280px; object-fit: cover; border-radius: 2px; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-400px * 6)); } }
 
         /* Footer */
-        footer { background: var(--donkerblauw); color: var(--wit); padding: 60px 60px; text-align: center; }
+        footer { background: var(--donkerblauw); color: var(--wit); padding: 60px 60px; text-align: center; width: 100%; }
         .footer-info { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
         .curated-by { color: var(--goud); font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; font-weight: 300; }
 
         /* --- MOBIELE & LAPTOP OPTIMALISATIE --- */
         @media (max-width: 1024px) {
-            .hero-split { flex-direction: column; }
+            .hero-split { flex-direction: column; width: 100%; }
             
             /* Strakke mobiele navbar */
             .navbar { 
@@ -234,21 +241,32 @@
                 align-items: center; 
                 height: 65px; 
                 padding: 0 15px; 
+                width: 100%;
             }
             
-            /* Flex-waardes gereset zodat ze naast elkaar passen */
             .nav-brand-container, .navbar.subpage-nav .nav-brand-container { 
                 flex: 0 0 auto; 
                 display: flex;
                 align-items: center;
+                transition: max-width 0.3s ease, opacity 0.3s ease;
+                overflow: hidden;
             }
+
+            /* FIX 1: Deze class klapt de logo-container nu écht dicht naar 0 breedte op home, zodat links schuiven */
+            .nav-brand-container.home-hidden {
+                max-width: 0;
+                margin: 0;
+                padding: 0;
+                opacity: 0;
+            }
+
             .nav-brand-container img { height: 35px; width: auto; } 
 
             /* Horizontaal scrollende links */
             .nav-links-container { 
                 flex: 1;
                 height: 100%;
-                padding-left: 20px;
+                padding-left: 0; /* Gewijzigd zodat 'Home' direct links aansluit */
                 padding-right: 0;
                 display: flex;
                 align-items: center;
@@ -292,9 +310,9 @@
                 transform: none !important; 
             }
             
-            .hero-visual { padding: 60px 20px; display: flex; }
+            .hero-visual { padding: 60px 20px; display: flex; width: 100%; }
             
-            .hero-text { padding: 60px 30px; text-align: center; }
+            .hero-text { padding: 60px 30px; text-align: center; width: 100%; }
             .hero-text.huizen-text { padding-top: 60px; }
             
             .aanbod-grid { grid-template-columns: 1fr; } 
@@ -601,17 +619,22 @@
 
         function updateNavLogo(paginaId) {
             const navLogo = document.getElementById('nav-logo');
+            const container = navLogo.parentElement;
+            
             if(paginaId === 'home') {
                 navLogo.style.opacity = '0';
                 navLogo.style.visibility = 'hidden';
+                if(window.innerWidth <= 1024) container.classList.add('home-hidden');
             } else {
                 navLogo.style.visibility = 'visible';
                 navLogo.style.opacity = '1';
+                container.classList.remove('home-hidden');
             }
         }
 
         function handleScroll() {
             const navLogo = document.getElementById('nav-logo');
+            const container = navLogo.parentElement;
             const homeIsActive = document.getElementById('home').classList.contains('actief');
             
             if (homeIsActive) {
@@ -626,9 +649,11 @@
                 if (window.scrollY > triggerPoint) {
                     navLogo.style.opacity = '1';
                     navLogo.style.visibility = 'visible';
+                    if(window.innerWidth <= 1024) container.classList.remove('home-hidden');
                 } else {
                     navLogo.style.opacity = '0';
                     navLogo.style.visibility = 'hidden';
+                    if(window.innerWidth <= 1024) container.classList.add('home-hidden');
                 }
 
                 // Dynamische krimp & fade van 2.png (Alleen op desktop)
@@ -641,11 +666,9 @@
                     const scale = 1 - (0.55 * progress); 
                     const opacity = 1 - (0.6 * progress); // Helderheid van 100% naar 40%
                     
-                    // LET OP: translateX(-50%) hier toegevoegd zodat hij exact gecentreerd blijft
                     homeLogo.style.transform = `translateX(-50%) scale(${scale})`;
                     homeLogo.style.opacity = opacity;
                 } else if (homeLogo) {
-                    // Forceer reset op mobiel om bugs te voorkomen
                     homeLogo.style.transform = `none`;
                     homeLogo.style.opacity = '1';
                 }
