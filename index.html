@@ -5,362 +5,581 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EEN Vrijdag Vastgoed | Makelaardij Rotterdam</title>
     
-    <!-- Favicon voor Google Zoekresultaten -->
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="foto/logo.jpg">
 
     <style>
         :root { 
-            --goud: #C5A059; 
             --donkerblauw: #1A2B42; 
-            --taupe: #7A7568; 
-            --wit: #FFFFFF; 
+            --goud: #C5A059; 
+            --wit: #FFFFFF;
+            --off-white: #F4F4F4;
         }
+
         body, html { 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            margin: 0; padding: 0; 
+            font-family: 'Montserrat', sans-serif; 
             background-color: var(--wit); 
-            color: #333; 
-        }
-        
-        /* Launch Banner */
-        .launch-banner {
-            background-color: var(--goud);
-            color: var(--donkerblauw);
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 14px;
+            color: var(--donkerblauw); 
+            scroll-behavior: smooth;
         }
 
-        /* Navigatiemenu */
+        /* Launch Bar */
+        .launch-bar {
+            background: var(--donkerblauw); color: var(--goud);
+            text-align: center; padding: 10px; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 3px; font-weight: 600;
+        }
+
+        /* Navbar */
         .navbar { 
-            background-color: var(--taupe); 
-            z-index: 1000; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 100%;
-            overflow-x: auto; 
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .navbar::-webkit-scrollbar { display: none; }
-        .navbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .navbar ul { 
-            list-style: none; 
-            margin: 0; 
-            padding: 20px 40px; 
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
-            white-space: nowrap; 
+            display: flex; align-items: stretch;
+            position: sticky; top: 0;
+            background: rgba(255,255,255,0.98); backdrop-filter: blur(5px);
+            z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
+            min-height: 90px;
+            padding: 0; 
         }
 
-        .navbar li a { 
-            color: var(--wit); 
-            text-decoration: none; 
-            font-weight: bold; 
-            font-size: 16px; 
-            letter-spacing: 1px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
-        .navbar li a:hover, .navbar li a.actief { color: var(--goud); }
-
-        /* Pagina weergave logica */
-        .pagina { display: none; min-height: 70vh; }
-        .pagina.actief { display: block; animation: fadeIn 0.4s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Headers en banners */
-        .hero { background-color: var(--donkerblauw); text-align: center; padding: 60px 20px; display: flex; justify-content: center; }
-        .hero-banner-container { max-width: 900px; width: 100%; }
-        .banner-img { width: 100%; height: auto; display: block; margin: 0 auto; }
-        
-        .sub-header { 
-            background-color: var(--donkerblauw); 
-            color: var(--goud); 
-            padding: 50px 20px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 40px; 
-        }
-        .sub-logo { max-width: 250px; height: auto; }
-        .sub-header h1 { margin: 0; letter-spacing: 4px; font-size: 2.5em; text-transform: uppercase; }
-
-        /* Inhoud Layout */
-        .inhoud { padding: 80px 20px; max-width: 1000px; margin: 0 auto; text-align: center; }
-        
-        /* Home Layout */
-        .home-grid { 
-            display: flex; 
-            align-items: center; 
-            gap: 50px; 
-            text-align: left;
-            margin-top: 20px;
-        }
-        .home-tekst { flex: 1.5; }
-        .home-fotos { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 20px; 
-        }
-        .side-img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 4px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
-        }
-
-        h2 { color: var(--donkerblauw); font-size: 2.5em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
-        hr { border: 0; height: 2px; background: var(--goud); width: 80px; margin: 20px 0 40px 0; }
-        p { line-height: 1.8; font-size: 1.15em; }
-
-        /* SLINGER SLIDESHOW CSS */
-        .slider {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            background: var(--wit);
-            margin: 40px 0;
-            position: relative;
-        }
-        .slide-track {
+        .nav-brand-container {
+            flex: 1.2; 
             display: flex;
-            width: calc(300px * 12); /* Dubbel aantal foto's voor naadloze loop */
-            animation: scroll 40s linear infinite;
+            justify-content: center; 
+            align-items: center;
+            transition: flex 0s;
         }
-        .slide {
-            width: 300px;
-            height: 250px;
-            padding: 10px;
-            flex-shrink: 0;
+
+        .navbar.subpage-nav .nav-brand-container {
+            flex: 0.5; 
         }
-        .slide img {
+
+        /* Navigatie logo styling */
+        .nav-brand-container img {
+            height: 75px; 
+            width: auto;
+            display: block;
+            transition: opacity 0.4s ease-in-out;
+            opacity: 0; 
+        }
+
+        .nav-links-container {
+            flex: 1.5; 
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 80px; 
+        }
+
+        .nav-links { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
+        .nav-links a { 
+            text-decoration: none; color: var(--donkerblauw); 
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            font-weight: 400; transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover, .nav-links a.actief { color: var(--goud); }
+
+        /* Pagina Logica */
+        .pagina { display: none; }
+        .pagina.actief { display: block; animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Algemene Split-Screen Hero */
+        .hero-split { display: flex; min-height: 80vh; align-items: stretch; }
+        
+        .hero-visual { 
+            flex: 1.2; background: var(--donkerblauw); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
+            padding: 40px; position: relative;
+        }
+        
+        /* Smalle zijbalk voor subpagina's */
+        .hero-visual.subpage-visual {
+            flex: 0.5;
+            display: block; /* Aangepast naar block om de sticky-scroll mogelijk te maken */
+        }
+        
+        /* 2.png op de homepage */
+        .hero-main-logo { 
+            width: 100%; 
+            max-width: 450px; 
+            height: auto; 
+            margin-top: -100px; 
+            margin-bottom: 10px;
+        } 
+
+        .hero-image-sub { 
+            width: 100%; max-width: 480px; height: auto; 
+            border-radius: 2px;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
+        /* Sleuteltje - Perfect verticaal gecentreerd met scroll */
+        .subpage-icon { 
+            width: 100%; 
+            max-width: 350px; 
+            height: auto; 
+            position: sticky; 
+            top: 50vh; /* Plaats de bovenkant in het exacte midden van het scherm */
+            transform: translateY(-50%); /* Trek de afbeelding 50% van zijn eigen hoogte omhoog */
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .hero-text { flex: 1.5; background: var(--off-white); padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; }
+
+        /* Zorgt dat op de Huizen pagina de tekst altijd bovenaan start */
+        .hero-text.huizen-text {
+            justify-content: flex-start;
+            padding-top: 100px;
+        }
+
+        /* Video op Mediapagina */
+        .media-video {
+            width: 100%; max-width: 600px; border-radius: 2px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); margin-top: 40px;
+        }
+
+        /* Accent tekst */
+        .hero-text .accent { 
+            color: var(--goud); font-style: italic; font-size: 1.5rem; 
+            font-weight: 300; margin-bottom: 10px; display: block;
+        }
+        
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; line-height: 1.1; }
+        .hero-text p { margin-top: 30px; font-weight: 300; line-height: 1.8; font-size: 1.1rem; }
+
+        /* AANBOD GRID */
+        .aanbod-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .aanbod-intro-img {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .aanbod-intro-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+        }
+
+        .property-card {
+            background: var(--wit);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .property-image {
+            position: relative;
+            height: 240px;
+        }
+
+        .property-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-300px * 6)); }
         }
 
-        @media (max-width: 768px) {
-            .navbar ul { justify-content: flex-start; padding: 20px; gap: 25px; }
-            .sub-header { flex-direction: column; gap: 15px; }
-            .sub-logo { max-width: 200px; }
-            .home-grid { flex-direction: column; text-align: center; }
-            .home-grid hr { margin: 20px auto 40px auto; }
-            .home-fotos { width: 100%; flex-direction: row; }
-            .side-img { width: 50%; }
-            .slider { height: 180px; }
-            .slide { width: 220px; height: 180px; }
-            @keyframes scroll {
-                100% { transform: translateX(calc(-220px * 6)); }
-            }
+        .badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--goud);
+            color: var(--wit);
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        footer { background-color: var(--donkerblauw); color: var(--wit); text-align: center; padding: 50px 0; }
-        .curated-by { font-size: 0.9em; font-style: italic; color: var(--goud); margin-top: 15px; letter-spacing: 1.5px; opacity: 0.9; }
+        .property-info {
+            padding: 30px 25px;
+        }
+
+        .property-info h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            color: var(--donkerblauw);
+            font-weight: 600;
+        }
+
+        .property-info .prijs {
+            margin: 0 0 25px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--donkerblauw);
+        }
+
+        .property-specs {
+            display: flex;
+            gap: 25px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 20px;
+            font-size: 0.95rem;
+            color: #444;
+            align-items: center;
+        }
+
+        .property-specs span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-icon {
+            width: 20px;
+            height: 20px;
+            stroke: var(--goud);
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Blauwe Slinger Slideshow */
+        .slider-section { background: var(--donkerblauw); padding: 40px 0; overflow: hidden; }
+        .slide-track { display: flex; width: calc(400px * 12); animation: scroll 50s linear infinite; }
+        .slide { width: 400px; padding: 0 15px; }
+        .slide img { width: 100%; height: 280px; object-fit: cover; border-radius: 2px; }
+
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-400px * 6)); } }
+
+        /* Footer */
+        footer { background: var(--donkerblauw); color: var(--wit); padding: 60px 60px; text-align: center; }
+        .footer-info { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+        .curated-by { color: var(--goud); font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; font-weight: 300; }
+
+        @media (max-width: 1024px) {
+            .hero-split { flex-direction: column; }
+            .hero-visual { padding: 80px 20px; display: flex; }
+            .hero-main-logo { margin-top: 0; max-width: 320px; } 
+            .hero-text { padding: 60px 40px; text-align: center; }
+            .hero-text.huizen-text { padding-top: 60px; }
+            
+            .navbar { flex-direction: column; padding: 20px 0; }
+            .nav-brand-container, .navbar.subpage-nav .nav-brand-container { flex: auto; margin-bottom: 15px; }
+            .nav-links-container { padding-right: 0; justify-content: center; }
+            
+            .aanbod-grid { grid-template-columns: 1fr; } 
+            .subpage-icon { position: relative; top: 0; transform: none; } /* Zet sticky uit op mobiel */
+        }
     </style>
 </head>
 <body>
 
-    <div class="launch-banner">
-        Live begin 2027
-    </div>
+    <div class="launch-bar">Live begin 2027</div>
+
+    <nav class="navbar" id="hoofd-nav">
+        <!-- Logo container -->
+        <div class="nav-brand-container">
+            <img src="foto/5.png" alt="Logo EEN Vrijdag Vastgoed" id="nav-logo">
+        </div>
+        
+        <!-- Menu container -->
+        <div class="nav-links-container">
+            <ul class="nav-links">
+                <li><a onclick="toonPagina('home')" class="actief">Home</a></li>
+                <li><a onclick="toonPagina('huizen')">Aanbod</a></li>
+                <li><a onclick="toonPagina('diensten')">Diensten</a></li>
+                <li><a onclick="toonPagina('over-ons')">Over ons</a></li>
+                <li><a onclick="toonPagina('media')">Media</a></li>
+                <li><a onclick="toonPagina('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <div id="hoofd-container">
+        
         <!-- HOME -->
         <div id="home" class="pagina actief">
-            <header class="hero">
-                <div class="hero-banner-container">
-                    <img src="foto/Banner.jpg" alt="EEN Vrijdag Vastgoed" class="banner-img">
+            <section class="hero-split">
+                <div class="hero-visual">
+                    <img src="foto/2.png" alt="Logo EEN Vrijdag Vastgoed" class="hero-main-logo">
+                    <img src="foto/6.png" alt="Sfeerbeeld" class="hero-image-sub">
                 </div>
-            </header>
-            
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')" class="actief">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')">Media</a></li>
-                    <li><a onclick="toonPagina('contact')">Contact</a></li>
-                </ul>
-            </nav>
+                <div class="hero-text">
+                    <span class="accent">Vastgoed met Visie</span>
+                    <h1>Exclusiviteit op vrijdag.</h1>
+                    <p>Welkom bij EEN Vrijdag Vastgoed. Wij opereren op het snijvlak van strategie en exclusieve bemiddeling bij de verkoop en aankoop van uw woning in de regio Rotterdam.</p>
+                    <p>Onze volledige dienstverlening door Merijn Koopmans start begin 2027.</p>
+                </div>
+            </section>
 
-            <div class="inhoud">
-                <div class="home-grid">
-                    <div class="home-tekst">
-                        <h2>Exclusiviteit op Vrijdag</h2>
-                        <hr>
-                        <p>Welkom bij EEN Vrijdag Vastgoed. Wij zijn een Rotterdamse makelaardij die gelooft in de kracht van focus. Wij garanderen topkwaliteit en procesmatige perfectie voor elke klant. <strong>Onze volledige dienstverlening door Merijn Koopmans start begin 2027.</strong></p>
-                    </div>
-                    <div class="home-fotos">
-                        <img src="foto/kralingen.jpg" alt="Vastgoed Kralingen" class="side-img">
-                        <img src="foto/molen.jpg" alt="Rotterdamse Molen" class="side-img">
-                    </div>
+            <!-- Blauwe Slinger Slideshow -->
+            <section class="slider-section">
+                <div class="slide-track">
+                    <div class="slide"><img src="foto/hoflaan.jpg"></div>
+                    <div class="slide"><img src="foto/kralingen.jpg"></div>
+                    <div class="slide"><img src="foto/kralingen2.jpg"></div>
+                    <div class="slide"><img src="foto/molen.jpg"></div>
+                    <div class="slide"><img src="foto/park.jpg"></div>
+                    <div class="slide"><img src="foto/plas.jpg"></div>
+                    <div class="slide"><img src="foto/hoflaan.jpg"></div>
+                    <div class="slide"><img src="foto/kralingen.jpg"></div>
+                    <div class="slide"><img src="foto/kralingen2.jpg"></div>
+                    <div class="slide"><img src="foto/molen.jpg"></div>
+                    <div class="slide"><img src="foto/park.jpg"></div>
+                    <div class="slide"><img src="foto/plas.jpg"></div>
                 </div>
-
-                <!-- SLINGER SLIDESHOW -->
-                <div class="slider">
-                    <div class="slide-track">
-                        <!-- De 6 foto's -->
-                        <div class="slide"><img src="foto/hoflaan.jpg" alt="Hoflaan"></div>
-                        <div class="slide"><img src="foto/kralingen.jpg" alt="Kralingen"></div>
-                        <div class="slide"><img src="foto/kralingen2.jpg" alt="Kralingen 2"></div>
-                        <div class="slide"><img src="foto/molen.jpg" alt="Molen"></div>
-                        <div class="slide"><img src="foto/park.jpg" alt="Park"></div>
-                        <div class="slide"><img src="foto/plas.jpg" alt="Plas"></div>
-                        <!-- Kopie voor naadloze loop -->
-                        <div class="slide"><img src="foto/hoflaan.jpg" alt="Hoflaan"></div>
-                        <div class="slide"><img src="foto/kralingen.jpg" alt="Kralingen"></div>
-                        <div class="slide"><img src="foto/kralingen2.jpg" alt="Kralingen 2"></div>
-                        <div class="slide"><img src="foto/molen.jpg" alt="Molen"></div>
-                        <div class="slide"><img src="foto/park.jpg" alt="Park"></div>
-                        <div class="slide"><img src="foto/plas.jpg" alt="Plas"></div>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
 
-        <!-- HUIZEN -->
+        <!-- HUIZEN (AANBOD) -->
         <div id="huizen" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>HUIZEN</h1>
-            </header>
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')" class="actief">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')">Media</a></li>
-                    <li><a onclick="toonPagina('contact')">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="inhoud">
-                <h2>Portfolio</h2>
-                <hr style="margin: 20px auto 40px auto;">
-                <p>Het actuele aanbod wordt hier begin 2027 gepresenteerd.</p>
-            </div>
+            <section class="hero-split">
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                </div>
+                
+                <div class="hero-text huizen-text">
+                    <h1>Aanbod</h1>
+                    <p>Het exclusieve aanbod volgt begin 2027.</p>
+                    
+                    <div class="aanbod-grid">
+                        
+                        <!-- Grid Item 1: De sfeerfoto -->
+                        <div class="aanbod-intro-img">
+                            <img src="foto/7.png" alt="Huizen illustratie">
+                        </div>
+
+                        <!-- Grid Item 2: Huis 1 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 1</h3>
+                                <p class="prijs">€ 400.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 85 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 3 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Item 3: Huis 2 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 2</h3>
+                                <p class="prijs">€ 475.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 105 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 4 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Item 4: Huis 3 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 3</h3>
+                                <p class="prijs">€ 875.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 142 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 5 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Item 5: Huis 4 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 4</h3>
+                                <p class="prijs">€ 925.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 155 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 5 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Item 6: Huis 5 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 5</h3>
+                                <p class="prijs">€ 845.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 135 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 4 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Item 7: Huis 6 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 6</h3>
+                                <p class="prijs">€ 525.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 112 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 3 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grid Item 8: Huis 7 -->
+                        <div class="property-card">
+                            <div class="property-image">
+                                <span class="badge">Nieuw</span>
+                                <img src="foto/8.png" alt="Woning">
+                            </div>
+                            <div class="property-info">
+                                <h3>Adres 7</h3>
+                                <p class="prijs">€ 550.000 k.k.</p>
+                                <div class="property-specs">
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><path d="M3 9h18"></path><path d="M9 21V9"></path></svg> 118 m²</span>
+                                    <span><svg class="spec-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16h12V4a2 2 0 0 0-2-2z"></path><path d="M14 10h-2"></path></svg> 4 kamers</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- DIENSTEN -->
         <div id="diensten" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>DIENSTEN</h1>
-            </header>
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')" class="actief">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')">Media</a></li>
-                    <li><a onclick="toonPagina('contact')">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="inhoud">
-                <h2>Strategie & Tarieven</h2>
-                <hr style="margin: 20px auto 40px auto;">
-            </div>
+            <section class="hero-split">
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                </div>
+                <div class="hero-text">
+                    <h1>Diensten</h1>
+                    <p>Strategisch advies en integraal procesmanagement voor de Rotterdamse vastgoedmarkt.</p>
+                </div>
+            </section>
         </div>
 
         <!-- OVER ONS -->
         <div id="over-ons" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>OVER ONS</h1>
-            </header>
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')" class="actief">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')">Media</a></li>
-                    <li><a onclick="toonPagina('contact')">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="inhoud">
-                <h2>Ons Team</h2>
-                <hr style="margin: 20px auto 40px auto;">
-                <p>Met een stevige fundering in vastgoed en gebiedsontwikkeling biedt ons team een strategische expertise die zeldzaam is in de reguliere makelaardij.</p>
-            </div>
+            <section class="hero-split">
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                </div>
+                <div class="hero-text">
+                    <h1>Over ons</h1>
+                    <p>Wij combineren jarenlange ervaring met een vernieuwende blik op gebiedsontwikkeling.</p>
+                </div>
+            </section>
         </div>
 
         <!-- MEDIA -->
         <div id="media" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>MEDIA</h1>
-            </header>
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')" class="actief">Media</a></li>
-                    <li><a onclick="toonPagina('contact')">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="inhoud">
-                <h2>Publicaties</h2>
-                <hr style="margin: 20px auto 40px auto;">
-                <p>Binnenkort vindt u hier onze laatste vastgoedvideo's.</p>
-            </div>
+            <section class="hero-split">
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                </div>
+                <div class="hero-text">
+                    <h1>Publicaties</h1>
+                    <p>Binnenkort vindt u hier onze laatste media-uitingen.</p>
+                    <video class="media-video" autoplay muted loop playsinline>
+                        <source src="foto/mp-2.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </section>
         </div>
 
         <!-- CONTACT -->
         <div id="contact" class="pagina">
-            <header class="sub-header">
-                <img src="foto/logo.jpg" alt="EEN Vrijdag Vastgoed Logo" class="sub-logo">
-                <h1>CONTACT</h1>
-            </header>
-            <nav class="navbar">
-                <ul>
-                    <li><a onclick="toonPagina('home')">Home</a></li>
-                    <li><a onclick="toonPagina('huizen')">Huizen +</a></li>
-                    <li><a onclick="toonPagina('diensten')">Diensten +</a></li>
-                    <li><a onclick="toonPagina('over-ons')">Over ons +</a></li>
-                    <li><a onclick="toonPagina('media')">Media</a></li>
-                    <li><a onclick="toonPagina('contact')" class="actief">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="inhoud">
-                <h2>Neem Contact Op</h2>
-                <hr style="margin: 20px auto 40px auto;">
-                <p><strong>E-mail:</strong> info@eenvrijdagvastgoed.nl</p>
-                <p><strong>Locatie:</strong> Rotterdam</p>
-            </div>
+            <section class="hero-split">
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                </div>
+                <div class="hero-text">
+                    <h1>Neem Contact Op</h1>
+                    <p>
+                        <strong>E-mail:</strong> info@eenvrijdagvastgoed.nl<br><br>
+                        <strong>Locatie:</strong> Rotterdam
+                    </p>
+                </div>
+            </section>
         </div>
+
     </div>
 
     <footer>
-        <p>&copy; 2026 EEN Vrijdag Vastgoed Rotterdam.</p>
-        <p class="curated-by">by Merijn Koopmans</p>
+        <p class="footer-info">&copy; 2026 EEN Vrijdag Vastgoed Rotterdam</p>
+        <div class="curated-by">by Merijn Koopmans</div>
     </footer>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            updateNavLogo('home');
+        });
+
         function toonPagina(paginaId) {
-            var paginas = document.getElementsByClassName('pagina');
-            for (var i = 0; i < paginas.length; i++) { 
-                paginas[i].classList.remove('actief'); 
+            const paginas = document.querySelectorAll('.pagina');
+            paginas.forEach(p => p.classList.remove('actief'));
+            
+            const doelPagina = document.getElementById(paginaId);
+            if(doelPagina) {
+                doelPagina.classList.add('actief');
             }
-            document.getElementById(paginaId).classList.add('actief');
+            
+            const alleLinks = document.querySelectorAll('.nav-links a');
+            alleLinks.forEach(l => l.classList.remove('actief'));
+            const actieveLink = document.querySelector(`.nav-links a[onclick="toonPagina('${paginaId}')"]`);
+            if(actieveLink) {
+                actieveLink.classList.add('actief');
+            }
+
+            const navbar = document.getElementById('hoofd-nav');
+            if(paginaId === 'home') {
+                navbar.classList.remove('subpage-nav');
+            } else {
+                navbar.classList.add('subpage-nav');
+            }
+            
+            updateNavLogo(paginaId);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateNavLogo(paginaId) {
+            const navLogo = document.getElementById('nav-logo');
+            if(paginaId === 'home') {
+                navLogo.style.opacity = '0';
+                navLogo.style.visibility = 'hidden';
+            } else {
+                navLogo.style.visibility = 'visible';
+                navLogo.style.opacity = '1';
+            }
         }
     </script>
 </body>
