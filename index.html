@@ -38,7 +38,7 @@
             position: sticky; top: 0;
             background: rgba(255,255,255,0.98); backdrop-filter: blur(5px);
             z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
-            min-height: 90px;
+            height: 90px;
             padding: 0; 
         }
 
@@ -47,7 +47,7 @@
             display: flex;
             justify-content: center; 
             align-items: center;
-            transition: flex 0s;
+            transition: max-height 0.3s ease-out; 
         }
 
         .navbar.subpage-nav .nav-brand-container {
@@ -56,7 +56,7 @@
 
         /* Navigatie logo styling */
         .nav-brand-container img {
-            height: 75px; 
+            height: 70px; 
             width: auto;
             display: block;
             transition: opacity 0.4s ease-in-out;
@@ -89,60 +89,81 @@
         .hero-split { display: flex; min-height: 80vh; align-items: stretch; }
         
         .hero-visual { 
-            flex: 1.2; background: var(--donkerblauw); 
+            background: var(--donkerblauw); 
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
             padding: 40px; position: relative;
         }
-        
-        /* Smalle zijbalk voor subpagina's */
-        .hero-visual.subpage-visual {
-            flex: 0.5;
-            display: block; /* Aangepast naar block om de sticky-scroll mogelijk te maken */
+
+        /* --- HOMEPAGE ZIJBALK --- */
+        .hero-visual.home-visual {
+            flex: 0.85; 
+            margin-top: -90px; 
+            padding-top: 130px; 
+            z-index: 1001; 
+            background: linear-gradient(to bottom, rgba(26,43,66,0) 0%, rgba(26,43,66,0.8) 110px, var(--donkerblauw) 200px);
+        }
+
+        /* Wrapper voor het dynamische 2.png logo */
+        .home-logo-wrapper {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; /* Klikken vallen door de container heen */
+            z-index: 2;
+        }
+
+        /* 2.png: Plakt op 25px van de bovenkant, start in de fade */
+        .home-top-logo {
+            position: sticky;
+            top: 25px; 
+            margin: 25px auto 0 auto; 
+            width: 80%;
+            max-width: 380px;
+            height: auto;
+            transform-origin: top center;
+            opacity: 1; /* Start nu op 100% helderheid */
+            pointer-events: auto; /* Logo is wel weer klikbaar/selecteerbaar */
+            will-change: transform, opacity;
+            display: block;
         }
         
-        /* 2.png op de homepage */
-        .hero-main-logo { 
-            width: 100%; 
-            max-width: 450px; 
-            height: auto; 
-            margin-top: -100px; 
-            margin-bottom: 10px;
-        } 
-
+        /* Omdat 2.png nu absoluut zweeft, pakt 6.png mooi het verticale midden */
         .hero-image-sub { 
-            width: 100%; max-width: 480px; height: auto; 
+            width: 90%; max-width: 480px; height: auto; 
             border-radius: 2px;
             object-fit: contain;
             margin: 0 auto;
         }
 
-        /* Sleuteltje - Perfect verticaal gecentreerd met scroll */
+        /* --- SUBPAGINA ZIJBALK --- */
+        .hero-visual.subpage-visual {
+            flex: 0.5;
+            display: block; 
+        }
+
+        /* Sleuteltje - Weer groot, plakt in het midden */
         .subpage-icon { 
-            width: 100%; 
-            max-width: 350px; 
+            width: 85%; 
+            max-width: 350px; /* Terug naar het grote formaat */
             height: auto; 
             position: sticky; 
-            top: 50vh; /* Plaats de bovenkant in het exacte midden van het scherm */
-            transform: translateY(-50%); /* Trek de afbeelding 50% van zijn eigen hoogte omhoog */
+            top: calc(50vh + 45px); 
+            transform: translateY(-50%); 
             margin: 0 auto;
             display: block;
         }
         
         .hero-text { flex: 1.5; background: var(--off-white); padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; }
 
-        /* Zorgt dat op de Huizen pagina de tekst altijd bovenaan start */
         .hero-text.huizen-text {
             justify-content: flex-start;
             padding-top: 100px;
         }
 
-        /* Video op Mediapagina */
         .media-video {
             width: 100%; max-width: 600px; border-radius: 2px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1); margin-top: 40px;
         }
 
-        /* Accent tekst */
         .hero-text .accent { 
             color: var(--goud); font-style: italic; font-size: 1.5rem; 
             font-weight: 300; margin-bottom: 10px; display: block;
@@ -159,16 +180,8 @@
             margin-top: 50px;
         }
 
-        .aanbod-intro-img {
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .aanbod-intro-img img {
-            width: 100%;
-            height: auto;
-            border-radius: 2px;
-        }
+        .aanbod-intro-img { display: flex; align-items: flex-start; }
+        .aanbod-intro-img img { width: 100%; height: auto; border-radius: 2px; }
 
         .property-card {
             background: var(--wit);
@@ -178,85 +191,33 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .property-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        }
-
-        .property-image {
-            position: relative;
-            height: 240px;
-        }
-
-        .property-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .property-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .property-image { position: relative; height: 240px; }
+        .property-image img { width: 100%; height: 100%; object-fit: cover; }
 
         .badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--goud);
-            color: var(--wit);
-            padding: 6px 14px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            position: absolute; top: 20px; left: 20px;
+            background: var(--goud); color: var(--wit); padding: 6px 14px;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
         }
 
-        .property-info {
-            padding: 30px 25px;
-        }
-
-        .property-info h3 {
-            margin: 0 0 15px 0;
-            font-size: 1.4rem;
-            color: var(--donkerblauw);
-            font-weight: 600;
-        }
-
-        .property-info .prijs {
-            margin: 0 0 25px 0;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--donkerblauw);
-        }
+        .property-info { padding: 30px 25px; }
+        .property-info h3 { margin: 0 0 15px 0; font-size: 1.4rem; color: var(--donkerblauw); font-weight: 600; }
+        .property-info .prijs { margin: 0 0 25px 0; font-size: 1.4rem; font-weight: 600; color: var(--donkerblauw); }
 
         .property-specs {
-            display: flex;
-            gap: 25px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            padding-top: 20px;
-            font-size: 0.95rem;
-            color: #444;
-            align-items: center;
+            display: flex; gap: 25px; border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 20px; font-size: 0.95rem; color: #444; align-items: center;
         }
 
-        .property-specs span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .spec-icon {
-            width: 20px;
-            height: 20px;
-            stroke: var(--goud);
-            stroke-width: 1.5;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
+        .property-specs span { display: flex; align-items: center; gap: 8px; }
+        .spec-icon { width: 20px; height: 20px; stroke: var(--goud); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
         /* Blauwe Slinger Slideshow */
         .slider-section { background: var(--donkerblauw); padding: 40px 0; overflow: hidden; }
         .slide-track { display: flex; width: calc(400px * 12); animation: scroll 50s linear infinite; }
         .slide { width: 400px; padding: 0 15px; }
         .slide img { width: 100%; height: 280px; object-fit: cover; border-radius: 2px; }
-
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-400px * 6)); } }
 
         /* Footer */
@@ -264,19 +225,52 @@
         .footer-info { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
         .curated-by { color: var(--goud); font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; font-weight: 300; }
 
+        /* --- MOBIELE & LAPTOP OPTIMALISATIE --- */
         @media (max-width: 1024px) {
             .hero-split { flex-direction: column; }
+            
+            .navbar { height: auto; min-height: 0; padding: 10px 0 5px 0; }
+            
+            .nav-brand-container { margin-bottom: 5px; overflow: hidden; max-height: 100px; }
+            .nav-brand-container.home-hidden { max-height: 0; margin-bottom: 0; }
+            .nav-brand-container img { height: 45px; } 
+
+            .nav-links-container { padding-bottom: 10px; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .nav-links { width: max-content; margin: 0 auto; padding: 0 20px; gap: 20px; }
+            .nav-links::-webkit-scrollbar { display: none; }
+            
+            .hero-visual.home-visual {
+                margin-top: 0; padding-top: 40px; flex: auto; width: 100%;
+                background: var(--donkerblauw);
+            }
+
+            /* Mobiele reset voor het animerende logo (voorkomt chaos op de telefoon) */
+            .home-logo-wrapper {
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin-bottom: 30px;
+                z-index: 2;
+            }
+            
+            .home-top-logo { 
+                position: relative; 
+                top: 0; 
+                margin: 0 auto; 
+                width: 70%; 
+                max-width: 320px; 
+                display: block;
+                opacity: 1 !important; /* Forceert helderheid op mobiel */
+                transform: none !important; /* Zet schalen uit */
+            }
+            
             .hero-visual { padding: 80px 20px; display: flex; }
-            .hero-main-logo { margin-top: 0; max-width: 320px; } 
-            .hero-text { padding: 60px 40px; text-align: center; }
+            
+            .hero-text { padding: 60px 30px; text-align: center; }
             .hero-text.huizen-text { padding-top: 60px; }
             
-            .navbar { flex-direction: column; padding: 20px 0; }
-            .nav-brand-container, .navbar.subpage-nav .nav-brand-container { flex: auto; margin-bottom: 15px; }
-            .nav-links-container { padding-right: 0; justify-content: center; }
-            
             .aanbod-grid { grid-template-columns: 1fr; } 
-            .subpage-icon { position: relative; top: 0; transform: none; } /* Zet sticky uit op mobiel */
+            .subpage-icon { position: relative; top: 0; transform: none; max-width: 250px; margin-bottom: 20px; } 
         }
     </style>
 </head>
@@ -308,8 +302,13 @@
         <!-- HOME -->
         <div id="home" class="pagina actief">
             <section class="hero-split">
-                <div class="hero-visual">
-                    <img src="foto/2.png" alt="Logo EEN Vrijdag Vastgoed" class="hero-main-logo">
+                <div class="hero-visual home-visual">
+                    
+                    <!-- De wrapper met dynamisch logo 2.png -->
+                    <div class="home-logo-wrapper">
+                        <img src="foto/2.png" alt="Groot Logo EEN Vrijdag Vastgoed" class="home-top-logo" id="home-dynamic-logo">
+                    </div>
+                    
                     <img src="foto/6.png" alt="Sfeerbeeld" class="hero-image-sub">
                 </div>
                 <div class="hero-text">
@@ -482,7 +481,7 @@
                 </div>
                 <div class="hero-text">
                     <h1>Diensten</h1>
-                    <p>Strategisch advies en integraal procesmanagement voor de Rotterdamse vastgoedmarkt.</p>
+                    <p>Exclusieve en persoonlijke begeleiding bij de verkoop, aankoop en taxatie van uw woning in Rotterdam. Vanaf begin 2027 bieden wij een strategische aanpak op maat, gericht op het hoogste resultaat.</p>
                 </div>
             </section>
         </div>
@@ -542,6 +541,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             updateNavLogo('home');
+            window.addEventListener('scroll', handleScroll);
         });
 
         function toonPagina(paginaId) {
@@ -569,16 +569,66 @@
             
             updateNavLogo(paginaId);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(handleScroll, 50); // Direct verversen van de scroll-effecten
         }
 
         function updateNavLogo(paginaId) {
             const navLogo = document.getElementById('nav-logo');
+            const container = navLogo.parentElement;
+            
             if(paginaId === 'home') {
                 navLogo.style.opacity = '0';
                 navLogo.style.visibility = 'hidden';
+                if(window.innerWidth <= 1024) container.classList.add('home-hidden');
             } else {
                 navLogo.style.visibility = 'visible';
                 navLogo.style.opacity = '1';
+                container.classList.remove('home-hidden');
+            }
+        }
+
+        function handleScroll() {
+            const navLogo = document.getElementById('nav-logo');
+            const container = navLogo.parentElement;
+            const homeIsActive = document.getElementById('home').classList.contains('actief');
+            
+            if (homeIsActive) {
+                // Handoff-punt: Als je voorbij de hero visual scrolt
+                let triggerPoint = 400;
+                if (window.innerWidth <= 1024) {
+                    triggerPoint = 150; // Snellere logo overname op mobiel
+                } else {
+                    const heroVisual = document.querySelector('.home-visual');
+                    triggerPoint = heroVisual ? (heroVisual.offsetHeight - 120) : 400;
+                }
+
+                if (window.scrollY > triggerPoint) {
+                    navLogo.style.opacity = '1';
+                    navLogo.style.visibility = 'visible';
+                    if(window.innerWidth <= 1024) container.classList.remove('home-hidden');
+                } else {
+                    navLogo.style.opacity = '0';
+                    navLogo.style.visibility = 'hidden';
+                    if(window.innerWidth <= 1024) container.classList.add('home-hidden');
+                }
+
+                // Dynamische krimp & fade van 2.png (Alleen op desktop)
+                const homeLogo = document.getElementById('home-dynamic-logo');
+                if (homeLogo && window.innerWidth > 1024) { 
+                    const scrollY = window.scrollY;
+                    const maxScroll = 400; 
+                    const progress = Math.min(scrollY / maxScroll, 1);
+                    
+                    const scale = 1 - (0.55 * progress); // Verkleint richting formaat nav-logo (0.45x)
+                    const opacity = 1 - (0.6 * progress); // Helderheid van 100% naar 40%
+                    
+                    homeLogo.style.transform = `scale(${scale})`;
+                    homeLogo.style.opacity = opacity;
+                } else if (homeLogo) {
+                    // Forceer reset op mobiel
+                    homeLogo.style.transform = `none`;
+                    homeLogo.style.opacity = '1';
+                }
             }
         }
     </script>
