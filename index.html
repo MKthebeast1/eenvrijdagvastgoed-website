@@ -10,7 +10,6 @@
     <link rel="icon" type="image/jpeg" href="foto/logo.jpg">
 
     <style>
-        /* Voorkomt ghost-width en forceert strakke uitlijning */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -32,7 +31,6 @@
             overflow-x: clip; 
         }
 
-        /* Launch Bar */
         .launch-bar {
             background: var(--donkerblauw); color: var(--goud);
             text-align: center; padding: 10px; font-size: 11px;
@@ -44,19 +42,19 @@
             display: flex; align-items: stretch;
             position: sticky; top: 0;
             background: rgba(255,255,255,0.98); backdrop-filter: blur(5px);
-            z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 2000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             height: 90px;
             padding: 0; 
             transition: width 0.3s ease;
         }
 
-        /* Desktop Fix: Navbar stopt bij blauwe zijbalk op homepage */
+        /* Desktop Navbar Fix */
         @media (min-width: 1025px) {
             .navbar {
                 width: 50%;
                 margin-left: auto;
             }
-            /* Op subpagina's mag hij wel over de volle breedte */
             .navbar.subpage-nav {
                 width: 100%;
                 margin-left: 0;
@@ -104,7 +102,7 @@
         .pagina.actief { display: block; animation: fadeIn 0.6s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Algemene Split-Screen Hero */
+        /* Hero Split */
         .hero-split { display: flex; min-height: 80vh; align-items: stretch; }
         
         .hero-visual { 
@@ -113,7 +111,7 @@
             padding: 40px; position: relative;
         }
 
-        /* --- HOMEPAGE ZIJBALK --- */
+        /* Homepage Zijbalk */
         .hero-visual.home-visual {
             flex: 0.85; 
             margin-top: -90px; 
@@ -126,7 +124,7 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none; 
-            z-index: 1005; 
+            z-index: 1005;
         }
 
         .home-top-logo {
@@ -150,7 +148,7 @@
             margin: 0 auto;
         }
 
-        /* --- SUBPAGINA ZIJBALK --- */
+        /* Subpagina Zijbalk */
         .hero-visual.subpage-visual {
             flex: 0.5;
             display: block; 
@@ -188,7 +186,7 @@
         .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; line-height: 1.1; }
         .hero-text p { margin-top: 30px; font-weight: 300; line-height: 1.8; font-size: 1.1rem; }
 
-        /* AANBOD GRID */
+        /* Aanbod Grid */
         .aanbod-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -226,10 +224,7 @@
             padding-top: 20px; font-size: 0.95rem; color: #444; align-items: center;
         }
 
-        .property-specs span { display: flex; align-items: center; gap: 8px; }
-        .spec-icon { width: 20px; height: 20px; stroke: var(--goud); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-
-        /* Blauwe Slinger Slideshow */
+        /* Slinger Slideshow */
         .slider-section { background: var(--donkerblauw); padding: 40px 0; overflow: hidden; width: 100%; }
         .slide-track { display: flex; width: calc(400px * 12); animation: scroll 50s linear infinite; }
         .slide { width: 400px; padding: 0 15px; }
@@ -241,7 +236,7 @@
         .footer-info { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
         .curated-by { color: var(--goud); font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; font-weight: 300; }
 
-        /* --- MOBIELE OPTIMALISATIE --- */
+        /* Mobiele Optimalisatie */
         @media (max-width: 1024px) {
             .hero-split { flex-direction: column; width: 100%; }
             .navbar { height: 65px; padding: 0 15px; width: 100% !important; margin-left: 0 !important; }
@@ -257,9 +252,28 @@
             .nav-links { gap: 25px; padding: 0 15px; }
             .nav-links::-webkit-scrollbar { display: none; }
             
-            .hero-visual.home-visual { margin-top: 0; padding-top: 40px; z-index: 1; flex: auto; }
-            .home-top-logo { position: relative; top: 0; margin: 0 auto 20px; width: 70%; opacity: 1 !important; transform: none !important; }
-            .hero-text { padding: 60px 30px; text-align: center; }
+            .hero-visual.home-visual { margin-top: 0; padding-top: 20px; z-index: 1; flex: auto; }
+            
+            /* Logo 'zweeft' niet meer: Container wordt onderdeel van de flow */
+            .home-logo-wrapper { 
+                position: relative; 
+                z-index: auto; 
+                height: auto; 
+                width: 100%; 
+            }
+
+            .home-top-logo { 
+                position: relative; 
+                top: 0; 
+                margin: 20px auto; 
+                width: 70%; 
+                max-width: 300px; 
+                opacity: 1 !important; 
+                transform: none !important; 
+            }
+            
+            .hero-visual { padding: 20px; display: flex; width: 100%; }
+            .hero-text { padding: 40px 30px; text-align: center; }
             .aanbod-grid { grid-template-columns: 1fr; } 
             .subpage-icon { position: relative; top: 0; transform: none; max-width: 200px; margin-bottom: 20px; } 
         }
@@ -322,7 +336,7 @@
             </section>
         </div>
 
-        <!-- HUIZEN (AANBOD) -->
+        <!-- AANBOD -->
         <div id="huizen" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
@@ -333,41 +347,13 @@
                     <p>Het exclusieve aanbod volgt begin 2027.</p>
                     <div class="aanbod-grid">
                         <div class="aanbod-intro-img"><img src="foto/7.png" alt="Huizen illustratie"></div>
-                        <!-- Huis 1 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 1</h3><p class="prijs">€ 400.000 k.k.</p><div class="property-specs"><span>85 m²</span><span>3 kamers</span></div></div>
-                        </div>
-                        <!-- Huis 2 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 2</h3><p class="prijs">€ 475.000 k.k.</p><div class="property-specs"><span>105 m²</span><span>4 kamers</span></div></div>
-                        </div>
-                        <!-- Huis 3 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 3</h3><p class="prijs">€ 875.000 k.k.</p><div class="property-specs"><span>142 m²</span><span>5 kamers</span></div></div>
-                        </div>
-                        <!-- Huis 4 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 4</h3><p class="prijs">€ 925.000 k.k.</p><div class="property-specs"><span>155 m²</span><span>5 kamers</span></div></div>
-                        </div>
-                        <!-- Huis 5 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 5</h3><p class="prijs">€ 845.000 k.k.</p><div class="property-specs"><span>135 m²</span><span>4 kamers</span></div></div>
-                        </div>
-                        <!-- Huis 6 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 6</h3><p class="prijs">€ 525.000 k.k.</p><div class="property-specs"><span>112 m²</span><span>3 kamers</span></div></div>
-                        </div>
-                        <!-- Huis 7 -->
-                        <div class="property-card">
-                            <div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div>
-                            <div class="property-info"><h3>Adres 7</h3><p class="prijs">€ 550.000 k.k.</p><div class="property-specs"><span>118 m²</span><span>4 kamers</span></div></div>
-                        </div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 1</h3><p class="prijs">€ 400.000 k.k.</p><div class="property-specs"><span>85 m²</span><span>3 kamers</span></div></div></div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 2</h3><p class="prijs">€ 475.000 k.k.</p><div class="property-specs"><span>105 m²</span><span>4 kamers</span></div></div></div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 3</h3><p class="prijs">€ 875.000 k.k.</p><div class="property-specs"><span>142 m²</span><span>5 kamers</span></div></div></div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 4</h3><p class="prijs">€ 925.000 k.k.</p><div class="property-specs"><span>155 m²</span><span>5 kamers</span></div></div></div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 5</h3><p class="prijs">€ 845.000 k.k.</p><div class="property-specs"><span>135 m²</span><span>4 kamers</span></div></div></div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 6</h3><p class="prijs">€ 525.000 k.k.</p><div class="property-specs"><span>112 m²</span><span>3 kamers</span></div></div></div>
+                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 7</h3><p class="prijs">€ 550.000 k.k.</p><div class="property-specs"><span>118 m²</span><span>4 kamers</span></div></div></div>
                     </div>
                 </div>
             </section>
