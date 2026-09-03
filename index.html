@@ -64,7 +64,8 @@
             background: rgba(255,255,255,0.97); backdrop-filter: blur(8px);
             z-index: 2000;
             border-bottom: 1px solid var(--lijn);
-            height: 96px;
+            box-shadow: 0 1px 0 rgba(173,139,87,0.18);
+            height: 100px;
             padding: 0 var(--marge);
             width: 100%;
         }
@@ -75,7 +76,7 @@
             min-width: 40px;
         }
         .nav-brand-container img {
-            height: 40px;
+            height: 42px;
             width: auto;
             display: block;
             transition: opacity 0.5s ease;
@@ -86,15 +87,23 @@
             display: flex;
             align-items: center;
         }
-        .nav-links { list-style: none; display: flex; gap: 3.4vw; margin: 0; padding: 0; }
+        .nav-links { list-style: none; display: flex; gap: 3vw; margin: 0; padding: 0; }
         .nav-links a {
-            text-decoration: none; color: var(--navy);
-            font-size: 12px; letter-spacing: 0.2px;
-            font-weight: 400; transition: color 0.25s, opacity 0.25s;
+            position: relative;
+            text-decoration: none; color: var(--goud);
+            font-size: 11px; text-transform: uppercase; letter-spacing: 2.2px;
+            font-weight: 500; transition: color 0.3s ease;
             cursor: pointer;
-            opacity: 0.72;
+            padding-bottom: 22px;
         }
-        .nav-links a:hover, .nav-links a.actief { color: var(--goud); opacity: 1; }
+        .nav-links a::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+            height: 1px; background: var(--goud);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+        .nav-links a:hover, .nav-links a.actief { color: var(--navy); }
+        .nav-links a:hover::after, .nav-links a.actief::after { transform: scaleX(1); }
 
         /* Pagina Logica */
         .pagina { display: none; }
@@ -170,11 +179,16 @@
         .hero-visual.subpage-visual {
             background: var(--navy-deep);
             padding: 54px var(--marge);
-            display: flex; align-items: center; gap: 26px;
+            display: flex; align-items: center; gap: 28px;
+        }
+        .subpage-icon-badge {
+            width: 68px; height: 68px; border-radius: 50%; flex-shrink: 0;
+            background: var(--parel);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
         }
         .subpage-icon {
-            width: 38px; height: 38px; object-fit: contain;
-            filter: brightness(0) invert(1); opacity: 0.85; flex-shrink: 0;
+            width: 30px; height: 30px; object-fit: contain;
         }
         .subpage-heading { display: flex; flex-direction: column; gap: 10px; }
         .subpage-visual .banner-title {
@@ -225,9 +239,17 @@
             font-family: 'Fraunces', serif; font-style: italic; font-weight: 340;
             font-size: 1.5rem; color: var(--goud); opacity: 0.55;
         }
-        .listing-thumb { width: 128px; height: 88px; overflow: hidden; }
-        .listing-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .listing-row:hover .listing-thumb img { transform: scale(1.045); }
+        .listing-thumb {
+            width: 128px; height: 88px; overflow: hidden;
+            background: linear-gradient(135deg, #F2EEE6 0%, #E6DCC7 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .listing-thumb img {
+            width: 34%; height: auto; object-fit: contain;
+            opacity: 0.3; filter: grayscale(100%);
+            transition: opacity 0.5s ease, transform 0.6s ease;
+        }
+        .listing-row:hover .listing-thumb img { opacity: 0.42; transform: scale(1.08); }
         .listing-main h3 {
             margin: 0 0 8px 0; font-family: 'Fraunces', serif; font-weight: 440;
             font-size: 1.35rem; color: var(--navy); letter-spacing: -0.2px;
@@ -265,25 +287,24 @@
         /* Zwevende sleutel — terug naar boven (Aanbod) */
         .scroll-top-key {
             position: fixed; right: clamp(20px, 4vw, 56px); bottom: 40px;
-            width: 58px; height: 58px; border-radius: 50%;
-            background: var(--navy-deep); border: 1px solid var(--goud);
+            width: 64px; height: 64px; border-radius: 50%;
+            background: var(--parel); border: 1px solid rgba(15,30,51,0.08);
             display: flex; align-items: center; justify-content: center;
             padding: 0; cursor: pointer; z-index: 1500;
-            box-shadow: 0 12px 28px rgba(10,21,36,0.3);
+            box-shadow: 0 12px 28px rgba(10,21,36,0.22);
             opacity: 0; pointer-events: none; transform: translateY(14px) scale(0.94);
-            transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
         .scroll-top-key.zichtbaar { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
-        .scroll-top-key:hover { border-color: var(--goud-zacht); box-shadow: 0 16px 34px rgba(10,21,36,0.4); }
+        .scroll-top-key:hover { background: var(--wit); box-shadow: 0 16px 34px rgba(10,21,36,0.3); }
         .scroll-top-key img {
-            width: 24px; height: 24px; object-fit: contain;
-            filter: brightness(0) invert(1); opacity: 0.92;
+            width: 26px; height: 26px; object-fit: contain;
             transition: transform 0.4s ease;
         }
         .scroll-top-key:hover img { transform: translateY(-2px); }
         @media (max-width: 1024px) {
-            .scroll-top-key { width: 50px; height: 50px; right: 18px; bottom: 22px; }
-            .scroll-top-key img { width: 20px; height: 20px; }
+            .scroll-top-key { width: 54px; height: 54px; right: 18px; bottom: 22px; }
+            .scroll-top-key img { width: 22px; height: 22px; }
         }
 
         /* Mobiele Optimalisatie */
@@ -375,7 +396,7 @@
         <div id="huizen" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
-                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <div class="subpage-icon-badge"><img src="foto/1.png" alt="Sleutel" class="subpage-icon" onerror="this.parentElement.style.display='none'"></div>
                     <div class="subpage-heading">
                         <span class="marker op-donker">EEN Vrijdag Vastgoed</span>
                         <h2 class="banner-title">Aanbod</h2>
@@ -391,58 +412,58 @@
                             <div class="listing-row">
                                 <span class="listing-index">01</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 1</h3><div class="listing-specs"><span>85 m²</span><span>3 kamers</span></div></div>
-                                <div class="listing-prijs">€ 400.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>85 m²</span><span>3 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                             <div class="listing-row">
                                 <span class="listing-index">02</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 2</h3><div class="listing-specs"><span>105 m²</span><span>4 kamers</span></div></div>
-                                <div class="listing-prijs">€ 475.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>105 m²</span><span>4 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                             <div class="listing-row">
                                 <span class="listing-index">03</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 3</h3><div class="listing-specs"><span>142 m²</span><span>5 kamers</span></div></div>
-                                <div class="listing-prijs">€ 875.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>142 m²</span><span>5 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                             <div class="listing-row">
                                 <span class="listing-index">04</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 4</h3><div class="listing-specs"><span>155 m²</span><span>5 kamers</span></div></div>
-                                <div class="listing-prijs">€ 925.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>155 m²</span><span>5 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                             <div class="listing-row">
                                 <span class="listing-index">05</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 5</h3><div class="listing-specs"><span>135 m²</span><span>4 kamers</span></div></div>
-                                <div class="listing-prijs">€ 845.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>135 m²</span><span>4 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                             <div class="listing-row">
                                 <span class="listing-index">06</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 6</h3><div class="listing-specs"><span>112 m²</span><span>3 kamers</span></div></div>
-                                <div class="listing-prijs">€ 525.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>112 m²</span><span>3 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                             <div class="listing-row">
                                 <span class="listing-index">07</span>
                                 <div class="listing-thumb"><img src="foto/8.png" alt="Woning"></div>
-                                <div class="listing-main"><h3>Adres 7</h3><div class="listing-specs"><span>118 m²</span><span>4 kamers</span></div></div>
-                                <div class="listing-prijs">€ 550.000 k.k.</div>
+                                <div class="listing-main"><h3>Adres</h3><div class="listing-specs"><span>118 m²</span><span>4 kamers</span></div></div>
+                                <div class="listing-prijs">Vraagprijs</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <button class="scroll-top-key" id="aanbod-scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Terug naar boven">
-                <img src="foto/1.png" alt="">
+                <img src="foto/1.png" alt="" onerror="this.style.display='none'">
             </button>
         </div>
         <!-- DIENSTEN -->
         <div id="diensten" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
-                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <div class="subpage-icon-badge"><img src="foto/1.png" alt="Sleutel" class="subpage-icon" onerror="this.parentElement.style.display='none'"></div>
                     <div class="subpage-heading">
                         <span class="marker op-donker">EEN Vrijdag Vastgoed</span>
                         <h2 class="banner-title">Diensten</h2>
@@ -459,7 +480,7 @@
         <div id="over-ons" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
-                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <div class="subpage-icon-badge"><img src="foto/1.png" alt="Sleutel" class="subpage-icon" onerror="this.parentElement.style.display='none'"></div>
                     <div class="subpage-heading">
                         <span class="marker op-donker">EEN Vrijdag Vastgoed</span>
                         <h2 class="banner-title">Over ons</h2>
@@ -476,7 +497,7 @@
         <div id="media" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
-                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <div class="subpage-icon-badge"><img src="foto/1.png" alt="Sleutel" class="subpage-icon" onerror="this.parentElement.style.display='none'"></div>
                     <div class="subpage-heading">
                         <span class="marker op-donker">EEN Vrijdag Vastgoed</span>
                         <h2 class="banner-title">Publicaties</h2>
@@ -494,7 +515,7 @@
         <div id="contact" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
-                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <div class="subpage-icon-badge"><img src="foto/1.png" alt="Sleutel" class="subpage-icon" onerror="this.parentElement.style.display='none'"></div>
                     <div class="subpage-heading">
                         <span class="marker op-donker">EEN Vrijdag Vastgoed</span>
                         <h2 class="banner-title">Neem contact op</h2>
