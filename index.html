@@ -254,6 +254,8 @@
         .footer-divider { width: 40px; height: 1px; background: var(--goud); margin: 0 auto 28px auto; opacity: 0.7; }
         .footer-info { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
         .curated-by { color: var(--goud-zacht); font-size: 0.8rem; opacity: 0.75; letter-spacing: 1.5px; font-weight: 300; }
+        .curated-by a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(216,190,142,0.4); transition: border-color 0.3s, opacity 0.3s; }
+        .curated-by a:hover { border-color: var(--goud-zacht); opacity: 1; }
 
         /* Mobiele Optimalisatie */
         @media (max-width: 1024px) {
@@ -424,7 +426,7 @@
     <footer>
         <div class="footer-divider"></div>
         <p class="footer-info">&copy; 2026 EEN Vrijdag Vastgoed Rotterdam</p>
-        <div class="curated-by">by M. Koopmans</div>
+        <div class="curated-by">by M. Koopmans &middot; ook in kunst: <a href="https://koopmansfineart.com" target="_blank" rel="noopener">Koopmans Fine Art</a></div>
     </footer>
     <script>
         function resetMobielMenu() {
