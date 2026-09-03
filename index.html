@@ -4,285 +4,282 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EEN Vrijdag Vastgoed | Makelaardij Rotterdam</title>
-    
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/jpeg" href="foto/logo.jpg">
 
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="foto/logo.jpg">
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
         }
-
-        :root { 
-            --donkerblauw: #1A2B42; 
-            --goud: #C5A059; 
+        :root {
+            --navy: #101E33;
+            --navy-deep: #0A1524;
+            --goud: #B8935A;
+            --goud-zacht: #D8BE8E;
             --wit: #FFFFFF;
-            --off-white: #F4F4F4;
+            --parel: #FAF8F5;
+            --lijn: rgba(16,30,51,0.1);
+            --tekst-zacht: #5B6472;
         }
-
-        body, html { 
-            margin: 0; padding: 0; 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--wit); 
-            color: var(--donkerblauw); 
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Jost', sans-serif;
+            background-color: var(--wit);
+            color: var(--navy);
             scroll-behavior: smooth;
             width: 100%;
-            overflow-x: clip; 
+            overflow-x: clip;
+            -webkit-font-smoothing: antialiased;
+            font-weight: 300;
+        }
+        ::selection { background: var(--goud); color: var(--wit); }
+        ::-webkit-scrollbar { width: 9px; }
+        ::-webkit-scrollbar-track { background: var(--parel); }
+        ::-webkit-scrollbar-thumb { background: var(--goud); border-radius: 10px; }
+
+        .eyebrow {
+            font-size: 11px; text-transform: uppercase; letter-spacing: 4px; font-weight: 500;
         }
 
         .launch-bar {
-            background: var(--donkerblauw); color: var(--goud);
-            text-align: center; padding: 10px; font-size: 11px;
-            text-transform: uppercase; letter-spacing: 3px; font-weight: 600;
+            background: var(--navy-deep); color: var(--goud-zacht);
+            text-align: center; padding: 12px; font-size: 10.5px;
+            text-transform: uppercase; letter-spacing: 4px; font-weight: 500;
         }
-
         /* Navbar */
-        .navbar { 
-            display: flex; align-items: stretch;
+        .navbar {
+            display: flex; align-items: center; justify-content: space-between;
             position: sticky; top: 0;
-            background: rgba(255,255,255,0.98); backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.96); backdrop-filter: blur(10px);
             z-index: 2000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            height: 90px;
-            padding: 0; 
-            transition: width 0.3s ease;
+            border-bottom: 1px solid var(--lijn);
+            height: 92px;
+            padding: 0 64px;
+            width: 100%;
         }
-
-        /* Desktop Navbar Fix */
-        @media (min-width: 1025px) {
-            .navbar {
-                width: 50%;
-                margin-left: auto;
-            }
-            .navbar.subpage-nav {
-                width: 100%;
-                margin-left: 0;
-            }
-        }
-
         .nav-brand-container {
-            flex: 1.2; 
+            flex: 0 0 auto;
             display: flex;
-            justify-content: center; 
             align-items: center;
+            min-width: 40px;
         }
-
-        .navbar.subpage-nav .nav-brand-container {
-            flex: 0.5; 
-        }
-
         .nav-brand-container img {
-            height: 70px; 
+            height: 46px;
             width: auto;
             display: block;
-            transition: opacity 0.4s ease-in-out;
-            opacity: 0; 
+            transition: opacity 0.45s ease-in-out;
+            opacity: 0;
         }
-
         .nav-links-container {
-            flex: 1.5; 
+            flex: 0 0 auto;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            padding-right: 80px; 
         }
-
-        .nav-links { list-style: none; display: flex; gap: 40px; margin: 0; padding: 0; }
-        .nav-links a { 
-            text-decoration: none; color: var(--donkerblauw); 
-            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
-            font-weight: 400; transition: 0.3s;
+        .nav-links { list-style: none; display: flex; gap: 46px; margin: 0; padding: 0; }
+        .nav-links a {
+            position: relative;
+            text-decoration: none; color: var(--navy);
+            font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px;
+            font-weight: 500; transition: color 0.3s;
             cursor: pointer;
+            padding-bottom: 8px;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; left: 50%; bottom: 0;
+            width: 0; height: 1px; background: var(--goud);
+            transition: all 0.35s ease; transform: translateX(-50%);
         }
         .nav-links a:hover, .nav-links a.actief { color: var(--goud); }
+        .nav-links a:hover::after, .nav-links a.actief::after { width: 100%; }
 
         /* Pagina Logica */
         .pagina { display: none; }
-        .pagina.actief { display: block; animation: fadeIn 0.6s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .pagina.actief { display: block; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Hero Split */
-        .hero-split { display: flex; min-height: 80vh; align-items: stretch; }
-        
-        .hero-visual { 
-            background: var(--donkerblauw); 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;
-            padding: 40px; position: relative;
+        /* Hero (gestapeld, editorial) */
+        .hero-split { display: flex; flex-direction: column; width: 100%; }
+
+        .hero-visual {
+            background: radial-gradient(ellipse at top, #16273F 0%, var(--navy-deep) 70%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+            padding: 90px 40px 100px;
+            position: relative;
+            text-align: center;
         }
-
-        /* Homepage Zijbalk */
-        .hero-visual.home-visual {
-            flex: 0.85; 
-            margin-top: -90px; 
-            padding-top: 130px; 
-            z-index: 1001; 
-            background: linear-gradient(to bottom, rgba(26,43,66,0) 0%, rgba(26,43,66,0.8) 110px, var(--donkerblauw) 200px);
+        .hero-visual::after {
+            content: ''; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+            width: 1px; height: 46px; background: linear-gradient(to bottom, var(--goud), transparent);
         }
-
-        .home-logo-wrapper {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none; 
-            z-index: 1005;
-        }
-
+        .hero-visual.home-visual { padding: 70px 40px 110px; gap: 40px; }
+        .home-logo-wrapper { position: relative; width: 100%; display: flex; justify-content: center; }
         .home-top-logo {
-            position: sticky;
-            top: 25px; 
-            margin: 25px auto 0 auto; 
-            width: 80%;
-            max-width: 380px; 
+            width: 42%;
+            max-width: 260px;
             height: auto;
-            transform-origin: top center;
-            opacity: 1; 
-            pointer-events: auto; 
             will-change: transform, opacity;
             display: block;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4)) brightness(0) invert(1);
+            opacity: 0.95;
         }
-        
-        .hero-image-sub { 
-            width: 90%; max-width: 480px; height: auto; 
-            border-radius: 2px;
+        .hero-image-sub {
+            width: 70%; max-width: 460px; height: auto;
             object-fit: contain;
             margin: 0 auto;
+            border: 1px solid rgba(184,147,90,0.35);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
-
-        /* Subpagina Zijbalk */
         .hero-visual.subpage-visual {
-            flex: 0.5;
-            display: block; 
-            z-index: 999;
+            padding: 56px 40px 64px;
+            gap: 22px;
         }
-
-        .subpage-icon { 
-            width: 85%; 
-            max-width: 350px; 
-            height: auto; 
-            position: sticky; 
-            top: calc(50vh + 45px); 
-            transform: translateY(-50%); 
+        .subpage-icon {
+            width: 100%;
+            max-width: 92px;
+            height: auto;
             margin: 0 auto;
             display: block;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
         }
-        
-        .hero-text { flex: 1.5; background: var(--off-white); padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; }
+        .subpage-visual .banner-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; color: var(--wit); font-weight: 500; letter-spacing: 0.5px;
+            margin: 0;
+        }
+        .subpage-visual .eyebrow { color: var(--goud-zacht); }
 
-        .hero-text.huizen-text {
-            justify-content: flex-start;
-            padding-top: 100px;
+        .hero-text {
+            width: 100%;
+            background: var(--parel);
+            padding: 90px 40px 100px;
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
         }
+        .hero-text .inner { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .hero-text.huizen-text { padding-bottom: 40px; }
+        .hero-text.huizen-text .inner { max-width: 720px; }
 
         .media-video {
-            width: 100%; max-width: 600px; border-radius: 2px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1); margin-top: 40px;
+            width: 100%; max-width: 620px; border: 1px solid var(--lijn);
+            box-shadow: 0 20px 45px rgba(16,30,51,0.12); margin-top: 44px;
+        }
+        .hero-text .accent {
+            color: var(--goud); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+            font-weight: 500; margin-bottom: 18px; display: block;
         }
 
-        .hero-text .accent { 
-            color: var(--goud); font-style: italic; font-size: 1.5rem; 
-            font-weight: 300; margin-bottom: 10px; display: block;
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif; font-size: 3.9rem; margin: 0; line-height: 1.12;
+            font-weight: 600; color: var(--navy);
         }
-        
-        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 0; line-height: 1.1; }
-        .hero-text p { margin-top: 30px; font-weight: 300; line-height: 1.8; font-size: 1.1rem; }
+        .hero-text h1::after {
+            content: ''; display: block; width: 50px; height: 1px;
+            background: var(--goud); margin: 28px auto 0 auto;
+        }
+        .hero-text p { margin-top: 28px; font-weight: 300; line-height: 1.95; font-size: 1.05rem; color: var(--tekst-zacht); }
+
+        .cta-button {
+            display: inline-flex; align-items: center; gap: 14px;
+            margin-top: 40px;
+            background: var(--goud); color: var(--wit);
+            border: 1px solid var(--goud); padding: 17px 40px;
+            font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 3px; cursor: pointer;
+            transition: all 0.35s ease;
+        }
+        .cta-button:hover { background: transparent; color: var(--goud); }
+        .cta-button span { font-size: 14px; transition: transform 0.35s ease; }
+        .cta-button:hover span { transform: translateX(4px); }
+
+        .contact-note {
+            margin-top: 6px; font-size: 0.85rem; color: var(--tekst-zacht); font-style: italic;
+        }
 
         /* Aanbod Grid */
         .aanbod-grid {
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 50px;
+            gap: 2px;
+            margin-top: 60px;
+            background: var(--lijn);
+            border-top: 1px solid var(--lijn);
+            border-left: 1px solid var(--lijn);
         }
-
-        .aanbod-intro-img { display: flex; align-items: flex-start; }
-        .aanbod-intro-img img { width: 100%; height: auto; border-radius: 2px; }
-
+        .aanbod-intro-img { background: var(--parel); display: flex; align-items: center; justify-content: center; padding: 30px; border-right: 1px solid var(--lijn); border-bottom: 1px solid var(--lijn); }
+        .aanbod-intro-img img { width: 100%; height: auto; max-width: 320px; }
         .property-card {
             background: var(--wit);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 2px;
+            position: relative;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+            border-right: 1px solid var(--lijn);
+            border-bottom: 1px solid var(--lijn);
         }
-
-        .property-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
-        .property-image { position: relative; height: 240px; }
-        .property-image img { width: 100%; height: 100%; object-fit: cover; }
-
+        .property-image { position: relative; height: 230px; overflow: hidden; }
+        .property-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; filter: grayscale(15%); }
+        .property-card:hover .property-image img { transform: scale(1.05); filter: grayscale(0%); }
         .badge {
-            position: absolute; top: 20px; left: 20px;
-            background: var(--goud); color: var(--wit); padding: 6px 14px;
-            font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+            position: absolute; top: 18px; left: 18px;
+            background: rgba(16,30,51,0.85); color: var(--goud-zacht); padding: 6px 14px;
+            font-size: 0.65rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+            border: 1px solid rgba(184,147,90,0.4);
         }
-
-        .property-info { padding: 30px 25px; }
-        .property-info h3 { margin: 0 0 15px 0; font-size: 1.4rem; color: var(--donkerblauw); font-weight: 600; }
-        .property-info .prijs { margin: 0 0 25px 0; font-size: 1.4rem; font-weight: 600; color: var(--donkerblauw); }
-
+        .property-info { padding: 30px 28px 34px; }
+        .property-info h3 { margin: 0 0 12px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--navy); font-weight: 600; }
+        .property-info .prijs { margin: 0 0 20px 0; font-size: 1.05rem; font-weight: 400; color: var(--goud); letter-spacing: 0.5px; }
         .property-specs {
-            display: flex; gap: 25px; border-top: 1px solid rgba(0,0,0,0.05);
-            padding-top: 20px; font-size: 0.95rem; color: #444; align-items: center;
+            display: flex; gap: 22px; border-top: 1px solid var(--lijn);
+            padding-top: 18px; font-size: 0.85rem; color: var(--tekst-zacht); align-items: center;
+            letter-spacing: 0.5px; text-transform: uppercase;
         }
 
         /* Slinger Slideshow */
-        .slider-section { background: var(--donkerblauw); padding: 40px 0; overflow: hidden; width: 100%; }
-        .slide-track { display: flex; width: calc(400px * 12); animation: scroll 50s linear infinite; }
-        .slide { width: 400px; padding: 0 15px; }
-        .slide img { width: 100%; height: 280px; object-fit: cover; border-radius: 2px; }
+        .slider-section {
+            background: var(--navy-deep); padding: 50px 0; overflow: hidden; width: 100%;
+            -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+        }
+        .slide-track { display: flex; width: calc(400px * 12); animation: scroll 55s linear infinite; }
+        .slide { width: 400px; padding: 0 14px; }
+        .slide img { width: 100%; height: 270px; object-fit: cover; filter: grayscale(30%); border: 1px solid rgba(184,147,90,0.25); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-400px * 6)); } }
 
         /* Footer */
-        footer { background: var(--donkerblauw); color: var(--wit); padding: 60px 60px; text-align: center; width: 100%; }
-        .footer-info { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
-        .curated-by { color: var(--goud); font-size: 0.85rem; opacity: 0.8; letter-spacing: 1px; font-weight: 300; }
+        footer { background: var(--navy-deep); color: var(--wit); padding: 64px 40px 54px; text-align: center; width: 100%; }
+        .footer-divider { width: 40px; height: 1px; background: var(--goud); margin: 0 auto 28px auto; opacity: 0.7; }
+        .footer-info { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+        .curated-by { color: var(--goud-zacht); font-size: 0.8rem; opacity: 0.75; letter-spacing: 1.5px; font-weight: 300; }
 
         /* Mobiele Optimalisatie */
         @media (max-width: 1024px) {
-            .hero-split { flex-direction: column; width: 100%; }
-            .navbar { height: 65px; padding: 0 15px; width: 100% !important; margin-left: 0 !important; }
+            .navbar { height: 66px; padding: 0 18px; }
             .nav-brand-container.home-hidden { display: none; }
-            .nav-brand-container img { height: 35px; width: auto; } 
-
-            .nav-links-container { 
-                flex: 1; height: 100%; justify-content: flex-start;
-                padding-left: 0; padding-right: 0;
-                display: flex; align-items: center;
-                overflow-x: auto; -webkit-overflow-scrolling: touch; 
+            .nav-brand-container img { height: 32px; width: auto; }
+            .nav-links-container {
+                flex: 1; justify-content: flex-start;
+                overflow-x: auto; -webkit-overflow-scrolling: touch;
             }
-            .nav-links { gap: 25px; padding: 0 15px; }
+            .nav-links { gap: 24px; padding: 0 12px; }
             .nav-links::-webkit-scrollbar { display: none; }
-            
-            .hero-visual.home-visual { margin-top: 0; padding-top: 20px; z-index: 1; flex: auto; }
-            
-            /* Logo 'zweeft' niet meer: Container wordt onderdeel van de flow */
-            .home-logo-wrapper { 
-                position: relative; 
-                z-index: auto; 
-                height: auto; 
-                width: 100%; 
-            }
 
-            .home-top-logo { 
-                position: relative; 
-                top: 0; 
-                margin: 20px auto; 
-                width: 70%; 
-                max-width: 300px; 
-                opacity: 1 !important; 
-                transform: none !important; 
-            }
-            
-            .hero-visual { padding: 20px; display: flex; width: 100%; }
-            .hero-text { padding: 40px 30px; text-align: center; }
-            .aanbod-grid { grid-template-columns: 1fr; } 
-            .subpage-icon { position: relative; top: 0; transform: none; max-width: 200px; margin-bottom: 20px; } 
+            .hero-visual { padding: 50px 24px 60px; }
+            .hero-visual.home-visual { padding: 46px 24px 64px; }
+            .home-top-logo { width: 60%; max-width: 220px; }
+            .hero-image-sub { width: 90%; }
+            .hero-text { padding: 56px 24px 60px; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .aanbod-grid { grid-template-columns: 1fr; }
+            .subpage-visual .banner-title { font-size: 2.1rem; }
         }
     </style>
 </head>
 <body>
-
-    <div class="launch-bar">Live begin 2027</div>
-
+    <div class="launch-bar">Dienstverlening start Q3 2027</div>
     <nav class="navbar" id="hoofd-nav">
         <div class="nav-brand-container">
             <img src="foto/5.png" alt="Logo EEN Vrijdag Vastgoed" id="nav-logo">
@@ -298,9 +295,8 @@
             </ul>
         </div>
     </nav>
-
     <div id="hoofd-container">
-        
+
         <!-- HOME -->
         <div id="home" class="pagina actief">
             <section class="hero-split">
@@ -311,13 +307,15 @@
                     <img src="foto/6.png" alt="Sfeerbeeld" class="hero-image-sub">
                 </div>
                 <div class="hero-text">
-                    <span class="accent">Vastgoed met Visie</span>
-                    <h1>Exclusiviteit op vrijdag.</h1>
-                    <p>Welkom bij EEN Vrijdag Vastgoed. Wij opereren op het snijvlak van strategie en exclusieve bemiddeling bij de verkoop en aankoop van uw woning in de regio Rotterdam.</p>
-                    <p>Onze volledige dienstverlening start begin 2027.</p>
+                    <div class="inner">
+                        <span class="accent">Vastgoed met Visie</span>
+                        <h1>Exclusiviteit op vrijdag.</h1>
+                        <p>Welkom bij EEN Vrijdag Vastgoed. Wij opereren op het snijvlak van strategie en exclusieve bemiddeling bij de verkoop en aankoop van uw woning in de regio Rotterdam.</p>
+                        <p>Onze volledige dienstverlening start rond het derde kwartaal van 2027.</p>
+                        <button class="cta-button" onclick="toonPagina('contact')">Neem contact op <span>&rarr;</span></button>
+                    </div>
                 </div>
             </section>
-
             <section class="slider-section">
                 <div class="slide-track">
                     <div class="slide"><img src="foto/hoflaan.jpg"></div>
@@ -335,109 +333,127 @@
                 </div>
             </section>
         </div>
-
         <!-- AANBOD -->
         <div id="huizen" class="pagina">
             <section class="hero-split">
                 <div class="hero-visual subpage-visual">
                     <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <span class="eyebrow">EEN Vrijdag Vastgoed</span>
+                    <h2 class="banner-title">Aanbod</h2>
                 </div>
                 <div class="hero-text huizen-text">
-                    <h1>Aanbod</h1>
-                    <p>Het exclusieve aanbod volgt begin 2027.</p>
-                    <div class="aanbod-grid">
-                        <div class="aanbod-intro-img"><img src="foto/7.png" alt="Huizen illustratie"></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 1</h3><p class="prijs">€ 400.000 k.k.</p><div class="property-specs"><span>85 m²</span><span>3 kamers</span></div></div></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 2</h3><p class="prijs">€ 475.000 k.k.</p><div class="property-specs"><span>105 m²</span><span>4 kamers</span></div></div></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 3</h3><p class="prijs">€ 875.000 k.k.</p><div class="property-specs"><span>142 m²</span><span>5 kamers</span></div></div></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 4</h3><p class="prijs">€ 925.000 k.k.</p><div class="property-specs"><span>155 m²</span><span>5 kamers</span></div></div></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 5</h3><p class="prijs">€ 845.000 k.k.</p><div class="property-specs"><span>135 m²</span><span>4 kamers</span></div></div></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 6</h3><p class="prijs">€ 525.000 k.k.</p><div class="property-specs"><span>112 m²</span><span>3 kamers</span></div></div></div>
-                        <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 7</h3><p class="prijs">€ 550.000 k.k.</p><div class="property-specs"><span>118 m²</span><span>4 kamers</span></div></div></div>
+                    <div class="inner">
+                        <p>Het exclusieve aanbod volgt rond het derde kwartaal van 2027.</p>
+                        <div class="aanbod-grid">
+                            <div class="aanbod-intro-img"><img src="foto/7.png" alt="Huizen illustratie"></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 1</h3><p class="prijs">€ 400.000 k.k.</p><div class="property-specs"><span>85 m²</span><span>3 kamers</span></div></div></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 2</h3><p class="prijs">€ 475.000 k.k.</p><div class="property-specs"><span>105 m²</span><span>4 kamers</span></div></div></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 3</h3><p class="prijs">€ 875.000 k.k.</p><div class="property-specs"><span>142 m²</span><span>5 kamers</span></div></div></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 4</h3><p class="prijs">€ 925.000 k.k.</p><div class="property-specs"><span>155 m²</span><span>5 kamers</span></div></div></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 5</h3><p class="prijs">€ 845.000 k.k.</p><div class="property-specs"><span>135 m²</span><span>4 kamers</span></div></div></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 6</h3><p class="prijs">€ 525.000 k.k.</p><div class="property-specs"><span>112 m²</span><span>3 kamers</span></div></div></div>
+                            <div class="property-card"><div class="property-image"><span class="badge">Nieuw</span><img src="foto/8.png" alt="Woning"></div><div class="property-info"><h3>Adres 7</h3><p class="prijs">€ 550.000 k.k.</p><div class="property-specs"><span>118 m²</span><span>4 kamers</span></div></div></div>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
-
         <!-- DIENSTEN -->
         <div id="diensten" class="pagina">
             <section class="hero-split">
-                <div class="hero-visual subpage-visual"><img src="foto/1.png" alt="Sleutel" class="subpage-icon"></div>
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <span class="eyebrow">EEN Vrijdag Vastgoed</span>
+                    <h2 class="banner-title">Diensten</h2>
+                </div>
                 <div class="hero-text">
-                    <h1>Diensten</h1>
-                    <p>Exclusieve en persoonlijke begeleiding bij de verkoop, aankoop en taxatie van uw woning in Rotterdam. Vanaf begin 2027 bieden wij een strategische aanpak op maat, gericht op het hoogste resultaat.</p>
+                    <div class="inner">
+                        <p>Exclusieve en persoonlijke begeleiding bij de verkoop, aankoop en taxatie van uw woning in Rotterdam. Vanaf het derde kwartaal van 2027 bieden wij een strategische aanpak op maat, gericht op het hoogste resultaat.</p>
+                    </div>
                 </div>
             </section>
         </div>
-
         <!-- OVER ONS -->
         <div id="over-ons" class="pagina">
             <section class="hero-split">
-                <div class="hero-visual subpage-visual"><img src="foto/1.png" alt="Sleutel" class="subpage-icon"></div>
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <span class="eyebrow">EEN Vrijdag Vastgoed</span>
+                    <h2 class="banner-title">Over ons</h2>
+                </div>
                 <div class="hero-text">
-                    <h1>Over ons</h1>
-                    <p>EEN Vrijdag Vastgoed staat voor een exclusieve en strategische aanpak binnen de Rotterdamse makelaardij. Momenteel bereiden wij ons achter de schermen voor op onze officiële lancering begin 2027. Wij kijken ernaar uit om u straks met vernieuwende visie en persoonlijke toewijding te begeleiden bij de aan- of verkoop van uw woning.</p>
+                    <div class="inner">
+                        <p>EEN Vrijdag Vastgoed staat voor een exclusieve en strategische aanpak binnen de Rotterdamse makelaardij. Momenteel bereiden wij ons achter de schermen voor op onze officiële lancering rond het derde kwartaal van 2027. Wij kijken ernaar uit om u straks met vernieuwende visie en persoonlijke toewijding te begeleiden bij de aan- of verkoop van uw woning.</p>
+                    </div>
                 </div>
             </section>
         </div>
-
         <!-- MEDIA -->
         <div id="media" class="pagina">
             <section class="hero-split">
-                <div class="hero-visual subpage-visual"><img src="foto/1.png" alt="Sleutel" class="subpage-icon"></div>
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <span class="eyebrow">EEN Vrijdag Vastgoed</span>
+                    <h2 class="banner-title">Publicaties</h2>
+                </div>
                 <div class="hero-text">
-                    <h1>Publicaties</h1>
-                    <p>Binnenkort vindt u hier onze laatste media-uitingen.</p>
-                    <video class="media-video" autoplay muted loop playsinline><source src="foto/mp-2.mp4" type="video/mp4"></video>
+                    <div class="inner">
+                        <p>Binnenkort vindt u hier onze laatste media-uitingen.</p>
+                        <video class="media-video" autoplay muted loop playsinline><source src="foto/mp-2.mp4" type="video/mp4"></video>
+                    </div>
                 </div>
             </section>
         </div>
-
         <!-- CONTACT -->
         <div id="contact" class="pagina">
             <section class="hero-split">
-                <div class="hero-visual subpage-visual"><img src="foto/1.png" alt="Sleutel" class="subpage-icon"></div>
-                <div class="hero-text"><h1>Neem Contact Op</h1><p><strong>E-mail:</strong> info@eenvrijdagvastgoed.nl<br><br><strong>Locatie:</strong> Rotterdam</p></div>
+                <div class="hero-visual subpage-visual">
+                    <img src="foto/1.png" alt="Sleutel" class="subpage-icon">
+                    <span class="eyebrow">EEN Vrijdag Vastgoed</span>
+                    <h2 class="banner-title">Neem contact op</h2>
+                </div>
+                <div class="hero-text">
+                    <div class="inner">
+                        <p><strong>E-mail:</strong> wordt bekendgemaakt bij de start van onze dienstverlening<br><span class="contact-note">(rond Q3 2027)</span></p>
+                        <p><strong>Locatie:</strong> Rotterdam</p>
+                    </div>
+                </div>
             </section>
         </div>
     </div>
-
     <footer>
+        <div class="footer-divider"></div>
         <p class="footer-info">&copy; 2026 EEN Vrijdag Vastgoed Rotterdam</p>
         <div class="curated-by">by M. Koopmans</div>
     </footer>
-
     <script>
         function resetMobielMenu() {
             const menu = document.getElementById('mobiel-menu');
             if (menu) { menu.scrollLeft = 0; requestAnimationFrame(() => menu.scrollLeft = 0); }
         }
-
         document.addEventListener("DOMContentLoaded", function() {
             updateNavLogo('home');
             window.addEventListener('scroll', handleScroll);
             resetMobielMenu();
             setTimeout(resetMobielMenu, 200);
         });
-
         function toonPagina(paginaId) {
             const paginas = document.querySelectorAll('.pagina');
             paginas.forEach(p => p.classList.remove('actief'));
             document.getElementById(paginaId).classList.add('actief');
-            
+
             const alleLinks = document.querySelectorAll('.nav-links a');
             alleLinks.forEach(l => l.classList.remove('actief'));
-            document.querySelector(`.nav-links a[onclick="toonPagina('${paginaId}')"]`).classList.add('actief');
-
+            const matchLink = document.querySelector(`.nav-links a[onclick="toonPagina('${paginaId}')"]`);
+            if (matchLink) matchLink.classList.add('actief');
             const navbar = document.getElementById('hoofd-nav');
             if(paginaId === 'home') navbar.classList.remove('subpage-nav');
             else navbar.classList.add('subpage-nav');
-            
+
             updateNavLogo(paginaId);
             window.scrollTo({ top: 0, behavior: 'smooth' });
             resetMobielMenu();
         }
-
         function updateNavLogo(paginaId) {
             const navLogo = document.getElementById('nav-logo');
             const container = navLogo.parentElement;
@@ -451,12 +467,11 @@
                 container.classList.remove('home-hidden');
             }
         }
-
         function handleScroll() {
             const navLogo = document.getElementById('nav-logo');
             const container = navLogo.parentElement;
             const homeIsActive = document.getElementById('home').classList.contains('actief');
-            
+
             if (homeIsActive) {
                 let triggerPoint = window.innerWidth <= 1024 ? 150 : 400;
                 if (window.scrollY > triggerPoint) {
@@ -466,12 +481,11 @@
                     navLogo.style.opacity = '0'; navLogo.style.visibility = 'hidden';
                     if(window.innerWidth <= 1024) container.classList.add('home-hidden');
                 }
-
                 const homeLogo = document.getElementById('home-dynamic-logo');
-                if (homeLogo && window.innerWidth > 1024) { 
+                if (homeLogo && window.innerWidth > 1024) {
                     const progress = Math.min(window.scrollY / 400, 1);
-                    homeLogo.style.transform = `scale(${1 - (0.55 * progress)})`;
-                    homeLogo.style.opacity = 1 - (0.6 * progress);
+                    homeLogo.style.transform = `scale(${1 - (0.3 * progress)})`;
+                    homeLogo.style.opacity = 1 - (0.5 * progress);
                 }
             }
         }
